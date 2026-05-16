@@ -7,7 +7,11 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
 	site: 'https://waitlist.sportykore.com',
 	output: 'server',
-	adapter: vercel(),
+	adapter: vercel({
+		webAnalytics: {
+			enabled: true,
+		},
+	}),
 	vite: {
 		plugins: [tailwindcss()],
 	},
