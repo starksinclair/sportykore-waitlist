@@ -1,23 +1,109 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+	pathname?: string;
+	ogImage?: string;
+	/** e.g. `noindex, follow` for thank-you pages */
+	robots?: string;
+	ogImageWidth?: number;
+	ogImageHeight?: number;
+}
+
+const {
+	title = 'Sportykore Waitlist | Local football, live matches, clear stats',
+	description = 'Join the Sportykore waitlist to follow local matches, see clear stats, and stay close to the leagues shaping grassroots football in Nigeria.',
+	pathname = '/',
+	ogImage = '/social-preview.svg',
+	robots = 'index, follow',
+	ogImageWidth = 1200,
+	ogImageHeight = 630,
+} = Astro.props;
+
+const siteUrl = Astro.site ?? new URL('https://waitlist.sportykore.com');
+const canonicalUrl = new URL(pathname, siteUrl).toString();
+const ogImageUrl = new URL(ogImage, siteUrl).toString();
+const logoUrl = new URL('/favicon.svg', siteUrl).toString();
+
+const structuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'Organization',
+		name: 'Sportykore',
+		url: siteUrl.toString(),
+		logo: logoUrl,
+		description,
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'WebSite',
+		name: 'Sportykore Waitlist',
+		url: siteUrl.toString(),
+		description,
+		publisher: {
+			'@type': 'Organization',
+			name: 'Sportykore',
+			logo: logoUrl,
+		},
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'WebPage',
+		name: title,
+		description,
+		url: canonicalUrl,
+		inLanguage: 'en-NG',
+		isPartOf: {
+			'@type': 'WebSite',
+			name: 'Sportykore Waitlist',
+			url: siteUrl.toString(),
+		},
+	},
+];
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="en-NG">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<meta name="description" content={description} />
+		<meta name="robots" content={robots} />
+		<meta name="theme-color" content="#121212" />
+		<link rel="canonical" href={canonicalUrl} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Pacifico&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+		/>
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Sportykore" />
+		<meta property="og:locale" content="en_NG" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:image" content={ogImageUrl} />
+		<meta property="og:image:width" content={String(ogImageWidth)} />
+		<meta property="og:image:height" content={String(ogImageHeight)} />
+		<meta property="og:image:alt" content="Sportykore waitlist preview" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImageUrl} />
+		<title>{title}</title>
+		<script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
 	</head>
-	<body>
+	<body class="min-h-screen">
 		<slot />
+		<script>
+			import { inject } from '@vercel/analytics';
+
+			inject({ mode: 'auto' });
+		</script>
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

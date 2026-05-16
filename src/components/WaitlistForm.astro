@@ -1,0 +1,355 @@
+---
+import { roleOptions } from '../lib/waitlist';
+
+interface Props {
+	/** `light` matches in-app login / light surfaces; `dark` for dark hero panels */
+	variant?: 'light' | 'dark';
+}
+
+const { variant = 'light' } = Astro.props;
+const L = variant === 'light';
+
+const label = L
+	? 'mb-2 block text-[11px] font-bold uppercase tracking-[0.22em] text-slate-500'
+	: 'mb-2 block text-sm font-semibold text-white';
+
+const field =
+	L
+		? 'w-full rounded-[13px] border border-surface-200 bg-surface-100 px-4 py-4 text-base text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:bg-white focus:outline-none'
+		: 'w-full rounded-[13px] border border-white/12 bg-white/8 px-4 py-4 text-base text-white placeholder:text-white/45 focus:border-accent-400 focus:bg-white/10 focus:outline-none';
+
+const selectExtra = L ? 'waitlist-select-light cursor-pointer' : 'waitlist-select-dark';
+const selectClasses = `${field} appearance-none bg-[length:1.125rem] bg-[right_1rem_center] bg-no-repeat pr-11 ${selectExtra}`;
+
+const hint = L ? 'mt-2 text-sm text-slate-500' : 'mt-2 text-sm text-white/55';
+const hintStrong = L ? 'font-semibold text-slate-600' : 'font-semibold text-white/85';
+const err = L ? 'mt-2 hidden text-sm font-medium text-red-700' : 'mt-2 hidden text-sm text-red-200';
+
+const btn = L
+	? 'flex h-14 w-full items-center justify-center rounded-[13px] bg-accent-400 px-7 text-base font-semibold text-[#171717] shadow-[0_1px_0_rgba(255,255,255,0.35)_inset] transition duration-200 hover:bg-accent-500 disabled:cursor-not-allowed disabled:opacity-50'
+	: 'flex h-14 w-full items-center justify-center rounded-[13px] bg-accent-400 px-7 text-base font-semibold text-[#171717] transition duration-200 hover:bg-accent-500 disabled:cursor-not-allowed disabled:opacity-50';
+
+const foot = L ? 'text-sm text-slate-500' : 'text-sm text-white/55';
+
+const summary = L
+	? 'hidden rounded-[13px] border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-800'
+	: 'hidden rounded-[13px] border border-red-300/40 bg-red-500/10 px-4 py-3 text-sm text-red-100';
+---
+
+<form
+	class:list={['space-y-5', L && 'waitlist-form-light']}
+	data-waitlist-form
+	data-waitlist-variant={variant}
+	novalidate
+	aria-describedby="waitlist-form-status"
+>
+	<div class="grid gap-4 sm:grid-cols-2">
+		<div class="sm:col-span-2">
+			<label class={label} for="name">Full name</label>
+			<input
+				class={field}
+				id="name"
+				name="name"
+				type="text"
+				autocomplete="name"
+				placeholder="Your name"
+				aria-describedby="name-error"
+				required
+			/>
+			<p class={err} id="name-error"></p>
+		</div>
+
+		<div class="sm:col-span-2">
+			<label class={label} for="email">Email address</label>
+			<input
+				class={field}
+				id="email"
+				name="email"
+				type="email"
+				autocomplete="email"
+				inputmode="email"
+				placeholder="you@example.com"
+				aria-describedby="email-error"
+				required
+			/>
+			<p class={err} id="email-error"></p>
+		</div>
+
+		<div>
+			<label class={label} for="phone">Phone number</label>
+			<input
+				class={field}
+				id="phone"
+				name="phone"
+				type="tel"
+				autocomplete="tel"
+				inputmode="tel"
+				enterkeyhint="next"
+				placeholder="0801 234 5678"
+				maxlength="32"
+				autocorrect="off"
+				spellcheck="false"
+				aria-describedby="phone-error phone-hint"
+			/>
+			<!-- <p class={hint} id="phone-hint">
+				Nigerian mobile: <strong class={hintStrong}>080…</strong>,{' '}
+				<strong class={hintStrong}>801…</strong>, or <strong class={hintStrong}>+234…</strong>
+				— spaces are fine. Saved as international format.
+			</p> -->
+			<p class={err} id="phone-error"></p>
+		</div>
+
+		<div>
+			<label class={label} for="role">I’m joining as</label>
+			<select class={selectClasses} id="role" name="role" aria-describedby="role-error">
+				<option value="" class="text-slate-900">Choose your role</option>
+				{
+					roleOptions.map((role) => (
+						<option value={role} class="text-slate-900">
+							{role === 'organizer' ? 'Organizer' : `${role[0].toUpperCase()}${role.slice(1)}`}
+						</option>
+					))
+				}
+			</select>
+			<p class={err} id="role-error"></p>
+		</div>
+	</div>
+
+	<div class="space-y-3">
+		<button class={btn} type="submit" data-submit-button>
+			<span data-submit-label>Join the waitlist</span>
+		</button>
+		<p class={foot}>Nigeria first. Built for organizers, teams, and fans.</p>
+		<div class={summary} id="waitlist-form-summary" role="alert" tabindex="-1"></div>
+		<p class="sr-only" id="waitlist-form-status" aria-live="polite"></p>
+	</div>
+</form>
+
+<script>
+	import { normalizePhoneToE164, formatPhoneDisplay } from '../lib/phone';
+
+	const E164 = /^\+[1-9]\d{7,14}$/;
+
+	const form = document.querySelector('[data-waitlist-form]');
+
+	if (form instanceof HTMLFormElement) {
+		const statusRegion = form.querySelector('#waitlist-form-status');
+		const summary = form.querySelector('#waitlist-form-summary');
+		const submitButton = form.querySelector('[data-submit-button]');
+		const submitLabel = form.querySelector('[data-submit-label]');
+		const fieldNames = ['name', 'email', 'phone', 'role'];
+
+		const validators = {
+			name(value: string) {
+				return value.trim() ? '' : 'Enter your full name.';
+			},
+			email(value: string, field: HTMLInputElement) {
+				if (!value.trim()) {
+					return 'Enter your email address.';
+				}
+
+				if (field instanceof HTMLInputElement && field.validity.typeMismatch) {
+					return 'Enter a valid email address.';
+				}
+
+				return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())
+					? ''
+					: 'Enter a valid email address.';
+			},
+			phone(value: string) {
+				if (!value.trim()) {
+					return 'Enter your phone number.';
+				}
+
+				const normalized = normalizePhoneToE164(value);
+				if (!normalized || !E164.test(normalized)) {
+					return 'Use a valid number — e.g. 0801 234 5678 or +234 801 234 5678.';
+				}
+
+				return '';
+			},
+			role(value: string) {
+				return value ? '' : 'Choose how you take part in local football.';
+			},
+		};
+
+		const getField = (name: string) => form.elements.namedItem(name);
+		const getErrorElement = (name: string) => form.querySelector(`#${name}-error`);
+
+		const setFormBusy = (busy: boolean) => {
+			if (submitButton instanceof HTMLButtonElement) {
+				submitButton.disabled = busy;
+				submitButton.setAttribute('aria-busy', String(busy));
+			}
+
+			if (submitLabel) {
+				submitLabel.textContent = busy ? 'Joining…' : 'Join the waitlist';
+			}
+
+			if (statusRegion) {
+				statusRegion.textContent = busy ? 'Submitting your details.' : '';
+			}
+		};
+
+		const clearSummary = () => {
+			if (!(summary instanceof HTMLElement)) return;
+			summary.hidden = true;
+			summary.classList.add('hidden');
+			summary.textContent = '';
+		};
+
+		const showSummary = (message: string) => {
+			if (!(summary instanceof HTMLElement)) return;
+			summary.hidden = false;
+			summary.classList.remove('hidden');
+			summary.textContent = message;
+			summary.focus();
+			if (statusRegion) {
+				statusRegion.textContent = message;
+			}
+		};
+
+		const clearFieldError = (name: string) => {
+			const field = getField(name);
+			const error = getErrorElement(name);
+			if (field instanceof HTMLElement) {
+				field.removeAttribute('aria-invalid');
+			}
+			if (error instanceof HTMLElement) {
+				error.textContent = '';
+				error.hidden = true;
+				error.classList.add('hidden');
+			}
+		};
+
+		const showFieldError = (name: string, message: string) => {
+			const field = getField(name);
+			const error = getErrorElement(name);
+
+			if (field instanceof HTMLElement) {
+				field.setAttribute('aria-invalid', 'true');
+			}
+
+			if (error instanceof HTMLElement) {
+				error.hidden = false;
+				error.classList.remove('hidden');
+				error.textContent = message;
+			}
+		};
+
+		const readFormData = () => {
+			const formData = new FormData(form);
+			return {
+				name: String(formData.get('name') ?? ''),
+				email: String(formData.get('email') ?? ''),
+				phone: String(formData.get('phone') ?? ''),
+				role: String(formData.get('role') ?? ''),
+			};
+		};
+
+		const validate = () => {
+			const values = readFormData();
+			const errors: Record<string, string> = {};
+
+			for (const name of fieldNames) {
+				clearFieldError(name);
+				const field = getField(name);
+				const message = validators[name as keyof typeof validators](values[name as keyof typeof values], field as HTMLInputElement);
+				if (message) {
+					errors[name as keyof typeof errors] = message;
+				}
+			}
+
+			return { values, errors };
+		};
+
+		const focusFirstError = (errors: Record<string, string>) => {
+			for (const name of fieldNames) {
+				if (!errors[name]) continue;
+				const field = getField(name);
+				if (field instanceof HTMLElement) {
+					field.focus();
+				}
+				break;
+			}
+		};
+
+		for (const name of fieldNames) {
+			const field = getField(name);
+			if (!(field instanceof HTMLElement)) continue;
+			field.addEventListener('input', () => clearFieldError(name));
+			field.addEventListener('change', () => clearFieldError(name));
+		}
+
+		const phoneInput = form.querySelector('#phone');
+		if (phoneInput instanceof HTMLInputElement) {
+			const applyFormattedDisplay = () => {
+				const normalized = normalizePhoneToE164(phoneInput.value);
+				if (normalized && E164.test(normalized)) {
+					phoneInput.value = formatPhoneDisplay(normalized);
+				}
+			};
+
+			phoneInput.addEventListener('blur', applyFormattedDisplay);
+			phoneInput.addEventListener('paste', () => {
+				requestAnimationFrame(applyFormattedDisplay);
+			});
+		}
+
+		form.addEventListener('submit', async (event) => {
+			event.preventDefault();
+			clearSummary();
+			const { values, errors } = validate();
+
+			if (Object.keys(errors).length > 0) {
+				for (const [name, message] of Object.entries(errors)) {
+					showFieldError(name, message);
+				}
+				showSummary('Please correct the highlighted fields and try again.');
+				focusFirstError(errors);
+				return;
+			}
+
+			setFormBusy(true);
+
+			try {
+				const response = await fetch('/api/waitlist', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						...values,
+						phone: normalizePhoneToE164(values.phone),
+					}),
+				});
+
+				const result = await response.json();
+
+				if (!response.ok || !result.ok) {
+					if (result.fieldErrors) {
+						for (const [name, message] of Object.entries(result.fieldErrors)) {
+							if (typeof message === 'string' && message) {
+								showFieldError(name, message);
+							}
+						}
+						focusFirstError(result.fieldErrors);
+					}
+
+					showSummary(
+						typeof result.formError === 'string' && result.formError
+							? result.formError
+							: 'Please correct the highlighted fields and try again.',
+					);
+					return;
+				}
+
+				window.location.assign(result.redirectTo || '/thanks');
+			} catch {
+				showSummary('We could not join you to the waitlist right now. Please try again shortly.');
+			} finally {
+				setFormBusy(false);
+			}
+		});
+	}
+</script>

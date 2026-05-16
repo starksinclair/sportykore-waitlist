@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://waitlist.sportykore.com/sitemap.xml

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#121212" />
+  <path d="M0 0h1200v630H0z" fill="url(#a)" fill-opacity=".16" />
+  <g opacity=".28" stroke="#E6A817" stroke-width="2">
+    <path d="m-52 46 420 420" />
+    <path d="m28 46 420 420" />
+    <path d="m108 46 420 420" />
+    <path d="m188 46 420 420" />
+    <path d="m268 46 420 420" />
+    <path d="m348 46 420 420" />
+    <path d="m428 46 420 420" />
+    <path d="m508 46 420 420" />
+    <path d="m588 46 420 420" />
+    <path d="m668 46 420 420" />
+    <path d="m748 46 420 420" />
+    <path d="m828 46 420 420" />
+  </g>
+  <circle cx="173" cy="132" r="108" fill="#F9B923" fill-opacity=".12" />
+  <circle cx="1032" cy="112" r="140" fill="#4A148C" fill-opacity=".3" />
+  <circle cx="1036" cy="482" r="184" fill="#F9B923" fill-opacity=".12" />
+  <text x="84" y="148" fill="#F9B923" font-family="Pacifico, cursive" font-size="84">Sportykore</text>
+  <text x="84" y="250" fill="#FBE9B8" font-family="Open Sans, sans-serif" font-size="24" font-weight="700" letter-spacing="6">
+    LOCAL BALL
+  </text>
+  <text x="84" y="360" fill="white" font-family="Open Sans, sans-serif" font-size="88" font-weight="700">
+    Where local leagues
+  </text>
+  <text x="84" y="452" fill="white" font-family="Open Sans, sans-serif" font-size="88" font-weight="700">
+    gather.
+  </text>
+  <text x="84" y="536" fill="#D9DEE7" font-family="Open Sans, sans-serif" font-size="34">
+    Join the waitlist for live matches, clear stats, and a closer
+  </text>
+  <text x="84" y="578" fill="#D9DEE7" font-family="Open Sans, sans-serif" font-size="34">
+    view of grassroots football in Nigeria.
+  </text>
+  <defs>
+    <linearGradient id="a" x1="178" x2="1078" y1="80" y2="542" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4A148C" />
+      <stop offset="1" stop-color="#F9B923" />
+    </linearGradient>
+  </defs>
+</svg>
