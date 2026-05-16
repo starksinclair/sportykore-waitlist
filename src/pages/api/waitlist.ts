@@ -46,7 +46,14 @@ export const POST: APIRoute = async ({ request, url }) => {
 		const source = url.hostname === 'localhost' ? 'waitlist.sportykore.com' : url.host;
 		await appendWaitlistRow(validation.data, source);
 	} catch (error) {
-		console.error('Failed to append waitlist row', error);
+		const message = error instanceof Error ? error.message : String(error);
+		const errObj = error as { code?: unknown; response?: { status?: number; data?: unknown } };
+		console.error('Failed to append waitlist row:', message, {
+			code: errObj?.code,
+			status: errObj?.response?.status,
+			// Google often returns details in response.data (do not log secrets)
+			apiError: typeof errObj?.response?.data === 'object' ? errObj.response?.data : undefined,
+		});
 
 		return json(
 			{
