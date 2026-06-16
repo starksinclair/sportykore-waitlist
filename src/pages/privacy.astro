@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LegalPage from '../components/LegalPage.astro';
+import privacyBody from '../content/legal/privacy-body.html?raw';
+
+export const prerender = true;
+---
+
+<Layout
+	title="Privacy Policy | Sportykore"
+	description="How Sportykore collects, uses, and protects your personal information when you use our services and join the waitlist."
+	pathname="/privacy"
+>
+	<LegalPage
+		pageTitle="Privacy Policy"
+		lead="How we handle your information when you use Sportykore and this waitlist."
+		bodyHtml={privacyBody}
+	/>
+</Layout>

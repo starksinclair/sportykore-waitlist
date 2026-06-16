@@ -1,11 +1,10 @@
 ---
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 import getStartedScreen from '../assets/screens/getstarted-screen.png';
 
 export const prerender = true;
-
-const year = new Date().getFullYear();
 ---
 
 <Layout
@@ -64,16 +63,6 @@ const year = new Date().getFullYear();
 			</div>
 		</section>
 
-		<footer class="border-t border-white/10 bg-stripe-dark px-5 py-8 sm:px-8">
-			<div class="mx-auto flex max-w-6xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-				<a
-					class="text-sm font-semibold text-accent-200 underline decoration-accent-500/40 underline-offset-4 transition hover:text-accent-200"
-					href="/"
-				>
-					← Back to waitlist
-				</a>
-				<p class="text-xs text-white/40">© {year} Sportykore</p>
-			</div>
-		</footer>
+		<SiteFooter secondaryHref="/" secondaryLabel="← Back to waitlist" />
 	</main>
 </Layout>

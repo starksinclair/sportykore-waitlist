@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LegalPage from '../components/LegalPage.astro';
+import termsBody from '../content/legal/terms-body.html?raw';
+
+export const prerender = true;
+---
+
+<Layout
+	title="Terms & Conditions | Sportykore"
+	description="Terms of Service for Sportykore — the platform for local leagues, live matches, and clear grassroots football stats."
+	pathname="/terms"
+>
+	<LegalPage
+		pageTitle="Terms & Conditions"
+		lead="Legal terms for using Sportykore and related services."
+		bodyHtml={termsBody}
+	/>
+</Layout>

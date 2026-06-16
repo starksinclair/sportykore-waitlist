@@ -5,10 +5,9 @@ import homeScreen from '../assets/screens/home-screen.png';
 import onboardingScreen from '../assets/screens/onboarding-screen.png';
 import loginScreen from '../assets/screens/login-screen.png';
 import Layout from '../layouts/Layout.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 
 export const prerender = true;
-
-const year = new Date().getFullYear();
 ---
 
 <Layout
@@ -200,11 +199,6 @@ const year = new Date().getFullYear();
 			</div>
 		</section>
 
-		<footer class="border-t border-white/10 bg-stripe-dark px-5 py-9 sm:px-8">
-			<div class="mx-auto flex max-w-6xl flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-				<p class="font-brand text-2xl text-accent-400">Sportykore</p>
-				<p class="text-xs text-white/40">© {year} Sportykore</p>
-			</div>
-		</footer>
+		<SiteFooter secondaryHref="#form" secondaryLabel="Back to form" />
 	</main>
 </Layout>

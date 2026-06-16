@@ -1,0 +1,48 @@
+---
+interface Props {
+	/** Show a secondary link (e.g. back to waitlist form) */
+	secondaryHref?: string;
+	secondaryLabel?: string;
+}
+
+const { secondaryHref, secondaryLabel } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-white/10 bg-stripe-dark px-5 py-9 sm:px-8">
+	<div class="mx-auto flex max-w-6xl flex-col gap-6">
+		<div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+			<a href="/" class="font-brand text-2xl text-accent-400 transition hover:text-accent-500">
+				Sportykore
+			</a>
+			<nav
+				class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm"
+				aria-label="Legal and site links"
+			>
+				<a
+					class="font-semibold text-white/70 transition hover:text-accent-200"
+					href="/privacy"
+				>
+					Privacy Policy
+				</a>
+				<a
+					class="font-semibold text-white/70 transition hover:text-accent-200"
+					href="/terms"
+				>
+					Terms &amp; Conditions
+				</a>
+				{
+					secondaryHref && secondaryLabel ? (
+						<a
+							class="font-semibold text-accent-300/90 underline decoration-accent-500/40 underline-offset-4 transition hover:text-accent-200"
+							href={secondaryHref}
+						>
+							{secondaryLabel}
+						</a>
+					) : null
+				}
+			</nav>
+		</div>
+		<p class="text-xs text-white/40">© {year} Sportykore. Local football, clearer for everyone on the continent.</p>
+	</div>
+</footer>
