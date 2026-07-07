@@ -32,32 +32,42 @@ const {
 } = Astro.props;
 
 const siteUrl =
-	Astro.site ?? new URL(import.meta.env.PUBLIC_SITE_URL ?? 'https://waitlist.sportykore.com');
+	Astro.site ?? new URL(import.meta.env.PUBLIC_SITE_URL ?? 'https://sportykore.com');
 const canonicalUrl = new URL(pathname, siteUrl).toString();
 const ogImageUrl = new URL(ogImage, siteUrl).toString();
 const logoUrl = new URL('/favicon.svg', siteUrl).toString();
+const sitemapUrl = new URL('sitemap-index.xml', siteUrl).toString();
+
+const organizationDescription =
+	'Sportykore digitizes grassroots football competitions in Nigeria — live match scoring, automatic standings, and permanent player profiles.';
 
 const baseStructuredData = [
 	{
 		'@context': 'https://schema.org',
 		'@type': 'Organization',
+		'@id': `${siteUrl.toString()}#organization`,
 		name: 'Sportykore',
 		url: siteUrl.toString(),
 		logo: logoUrl,
 		email: 'info@sportykore.com',
-		description:
-			'Sportykore digitizes grassroots football competitions in Nigeria — live match scoring, automatic standings, and permanent player profiles.',
+		description: organizationDescription,
+		sameAs: [
+			'https://www.instagram.com/sportykore',
+			'https://x.com/sportykore',
+		],
 	},
 	{
 		'@context': 'https://schema.org',
 		'@type': 'WebSite',
+		'@id': `${siteUrl.toString()}#website`,
 		name: 'Sportykore',
+		alternateName: 'Sportykore Waitlist',
 		url: siteUrl.toString(),
+		description: organizationDescription,
 		publisher: {
-			'@type': 'Organization',
-			name: 'Sportykore',
-			logo: logoUrl,
+			'@id': `${siteUrl.toString()}#organization`,
 		},
+		inLanguage: 'en-NG',
 	},
 	...structuredData,
 ];
@@ -74,6 +84,7 @@ const baseStructuredData = [
 		<meta name="robots" content={robots} />
 		<meta name="theme-color" content="#121212" />
 		<link rel="canonical" href={canonicalUrl} />
+		<link rel="sitemap" type="application/xml" title="Sitemap" href={sitemapUrl} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
