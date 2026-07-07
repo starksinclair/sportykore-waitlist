@@ -1,0 +1,140 @@
+---
+/**
+ * The hero's live match card (§5.1) — a broadcast scoreboard that is actually
+ * alive: the minute ticks, the score flips 1–0 → 2–0 at 67' with a gold pulse
+ * and a goal line, then the loop resets gracefully.
+ *
+ * Server-rendered state is the *static* one (67', 2–0, goal line visible) so
+ * no-JS and prefers-reduced-motion both get a complete, legible scoreboard.
+ */
+---
+
+<div data-live-card>
+	<div
+		class="rounded-2xl border border-white/12 bg-[#1a1a1f]/95 p-5 shadow-phone sm:p-6"
+		role="img"
+		aria-label="Live match on Sportykore: Lagos Premier League, Eko Stars 2, Tafawa FC 0, 67th minute"
+	>
+		<div class="flex items-center justify-between gap-3">
+			<span class="live-badge">Live</span>
+			<span class="truncate text-xs font-semibold uppercase tracking-[0.1em] text-white/55">
+				Lagos Premier League
+			</span>
+			<span
+				class="rounded-full bg-white/8 px-2.5 py-1 text-xs font-bold tabular-nums text-gold-score"
+				data-minute
+			>
+				67′
+			</span>
+		</div>
+
+		<div class="mt-6 grid grid-cols-[1fr_auto_1fr] items-center gap-3 sm:gap-4" data-scoreboard>
+			<div class="flex flex-col items-center gap-2 text-center">
+				<span
+					class="flex h-11 w-11 items-center justify-center rounded-full bg-purple text-sm font-extrabold text-white"
+					aria-hidden="true"
+				>
+					ES
+				</span>
+				<span class="text-sm font-bold text-white sm:text-[0.9375rem]">Eko Stars</span>
+			</div>
+
+			<div
+				class="text-[2.6rem] font-extrabold leading-none tabular-nums tracking-tight text-gold-score sm:text-5xl"
+				data-score
+			>
+				2–0
+			</div>
+
+			<div class="flex flex-col items-center gap-2 text-center">
+				<span
+					class="flex h-11 w-11 items-center justify-center rounded-full bg-purple-dark text-sm font-extrabold text-white"
+					aria-hidden="true"
+				>
+					TF
+				</span>
+				<span class="text-sm font-bold text-white sm:text-[0.9375rem]">Tafawa FC</span>
+			</div>
+		</div>
+
+		<div class="mt-5 border-t border-white/10 pt-3 text-center" data-goal-line>
+			<p class="text-[0.8125rem] font-bold uppercase tracking-[0.1em] text-gold-soft">
+				Goal — T. Adeyemi 67′
+			</p>
+		</div>
+	</div>
+
+	<p class="mt-3 text-center text-sm text-white/55">A real match day on Sportykore.</p>
+</div>
+
+<script>
+	const card = document.querySelector('[data-live-card]');
+	const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+	if (card instanceof HTMLElement && !reducedMotion.matches) {
+		const minuteEl = card.querySelector('[data-minute]');
+		const scoreEl = card.querySelector('[data-score]');
+		const goalLine = card.querySelector('[data-goal-line]');
+		const scoreboard = card.querySelector('[data-scoreboard]');
+
+		if (
+			minuteEl instanceof HTMLElement &&
+			scoreEl instanceof HTMLElement &&
+			goalLine instanceof HTMLElement &&
+			scoreboard instanceof HTMLElement
+		) {
+			const START_MINUTE = 63;
+			const GOAL_MINUTE = 67;
+			const RESET_MINUTE = 71;
+			const TICK_MS = 3500;
+
+			let minute = START_MINUTE;
+
+			const render = () => {
+				minuteEl.textContent = `${minute}′`;
+			};
+
+			const setInitial = () => {
+				minute = START_MINUTE;
+				scoreEl.textContent = '1–0';
+				goalLine.style.display = 'none';
+				goalLine.classList.remove('goal-line-enter');
+				scoreEl.classList.remove('goal-pulse');
+				render();
+			};
+
+			const scoreGoal = () => {
+				scoreEl.textContent = '2–0';
+				scoreEl.classList.add('goal-pulse');
+				goalLine.style.display = '';
+				goalLine.classList.add('goal-line-enter');
+			};
+
+			const resetGracefully = () => {
+				const fade = 'opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1)';
+				scoreboard.style.transition = fade;
+				goalLine.style.transition = fade;
+				scoreboard.style.opacity = '0';
+				goalLine.style.opacity = '0';
+
+				window.setTimeout(() => {
+					setInitial();
+					scoreboard.style.opacity = '1';
+					goalLine.style.opacity = '1';
+				}, 480);
+			};
+
+			setInitial();
+
+			window.setInterval(() => {
+				if (minute >= RESET_MINUTE) {
+					resetGracefully();
+					return;
+				}
+				minute += 1;
+				render();
+				if (minute === GOAL_MINUTE) scoreGoal();
+			}, TICK_MS);
+		}
+	}
+</script>

@@ -1,0 +1,157 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PhoneFrame from '../components/PhoneFrame.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import WaitlistSection from '../components/WaitlistSection.astro';
+import { faqGroups } from '../lib/faq';
+
+import manageLeagues from '../assets/screens/manage-leagues.png';
+import matchCenter from '../assets/screens/match-center.png';
+
+export const prerender = true;
+
+const organizerFaq = faqGroups
+	.filter((group) => group.heading === 'For organizers')
+	.flatMap((group) => group.entries);
+
+const benefits = [
+	{
+		title: 'Setup takes minutes',
+		text: 'Create the competition, set the season, add teams. Share invite links and players onboard themselves — you never type a roster into a system.',
+	},
+	{
+		title: 'Live match day from one phone',
+		text: 'Big +/− score buttons, the running minute, scorers and assists logged as they happen — right from the touchline.',
+	},
+	{
+		title: 'The table keeps itself',
+		text: 'Standings and player stats update automatically after every result. No spreadsheets, no late-night maths.',
+	},
+	{
+		title: 'Stream to your fans',
+		text: 'Competitions that stream on YouTube Live can attach the stream so fans watch right inside the match center.',
+	},
+	{
+		title: 'Your competition’s data stays yours',
+		text: 'We’re digitizing your history, not taking it. Sportykore complies with Nigeria’s Data Protection Act (NDPA 2023).',
+	},
+	{
+		title: 'Free while we grow together',
+		text: 'Sportykore is free for competitions right now, and stays free while we grow with our first 100 competitions. Early competitions are partners, not customers.',
+	},
+];
+
+const breadcrumbSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'BreadcrumbList',
+	itemListElement: [
+		{ '@type': 'ListItem', position: 1, name: 'Home', item: '/' },
+		{ '@type': 'ListItem', position: 2, name: 'For organizers', item: '/organizers' },
+	],
+};
+---
+
+<Layout
+	title="For organizers — Sportykore"
+	description="Create a competition in minutes, run live match days from one phone, and let standings keep themselves. Free for early competitions — join the Sportykore waitlist."
+	pathname="/organizers"
+	structuredData={[breadcrumbSchema]}
+>
+	<main id="main" class="overflow-x-clip">
+		<section class="bg-stripe-hero px-5 pb-16 pt-14 text-white sm:px-8 lg:pb-20 lg:pt-18">
+			<div class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+				<div class="space-y-6">
+					<p class="eyebrow hero-enter text-gold-soft" style="--enter-delay: 0ms">
+						For organizers
+					</p>
+					<h1 class="display-1 hero-enter text-balance" style="--enter-delay: 150ms">
+						Give your competition the broadcast treatment.
+					</h1>
+					<p
+						class="hero-enter max-w-lg text-[1.0625rem] leading-relaxed text-white/75"
+						style="--enter-delay: 300ms"
+					>
+						Run live match days from one phone, and let standings, stats, and player records keep
+						themselves — for every team in your competition.
+					</p>
+					<div class="hero-enter flex flex-col gap-3 sm:flex-row" style="--enter-delay: 450ms">
+						<a href="#waitlist" class="btn-cta text-base">Join the waitlist</a>
+					</div>
+				</div>
+				<div class="hero-enter flex justify-center lg:justify-end" style="--enter-delay: 450ms">
+					<div class="w-[62%] max-w-64 sm:max-w-68">
+						<PhoneFrame
+							src={manageLeagues}
+							alt="Sportykore competition management screen for creating, scheduling, and managing a competition"
+							loading="eager"
+							sizes="(min-width: 1024px) 272px, 62vw"
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="bg-chalk px-5 py-20 sm:px-8 lg:py-24">
+			<div class="mx-auto max-w-6xl">
+				<div class="max-w-2xl" data-reveal>
+					<p class="eyebrow text-purple">For organizers</p>
+					<h2 class="display-2 mt-3 text-ink">Everything a competition needs to run itself.</h2>
+				</div>
+
+				<div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+					{
+						benefits.map((benefit, index) => (
+							<article
+								class="rounded-2xl bg-white p-6 shadow-card"
+								data-reveal
+								data-reveal-delay={String((index % 3) * 100)}
+							>
+								<h3 class="text-lg font-bold text-ink">{benefit.title}</h3>
+								<p class="mt-2.5 text-[0.9375rem] leading-relaxed text-muted">{benefit.text}</p>
+							</article>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="bg-stripe-dark px-5 py-20 text-white sm:px-8 lg:py-24">
+			<div class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+				<div class="flex justify-center" data-reveal>
+					<div data-parallax class="w-[70%] max-w-70 sm:max-w-72">
+						<PhoneFrame
+							src={matchCenter}
+							alt="Sportykore live match center with score controls, live minute, and goal logging"
+						/>
+					</div>
+				</div>
+				<div data-reveal data-reveal-delay="100">
+					<p class="eyebrow text-gold-soft">Match day</p>
+					<h2 class="display-2 mt-3 text-white">One phone runs the whole show.</h2>
+					<p class="mt-4 max-w-md leading-relaxed text-white/70">
+						Start the match, keep the minute running, tap the score as it changes, and log
+						scorers and assists in the moment. When the whistle goes, the table has already
+						updated itself.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="bg-chalk px-5 py-20 sm:px-8 lg:py-24">
+			<div class="mx-auto max-w-3xl">
+				<div class="max-w-2xl" data-reveal>
+					<p class="eyebrow text-purple">Questions</p>
+					<h2 class="display-2 mt-3 text-ink">Organizer questions.</h2>
+				</div>
+				<div class="mt-10" data-reveal>
+					<FaqAccordion entries={organizerFaq} />
+				</div>
+				<p class="mt-8" data-reveal>
+					<a href="/faq" class="link-slide font-bold text-purple">All questions →</a>
+				</p>
+			</div>
+		</section>
+
+		<WaitlistSection />
+	</main>
+</Layout>

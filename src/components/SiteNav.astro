@@ -1,0 +1,106 @@
+---
+const links = [
+	{ href: '/players', label: 'Players' },
+	{ href: '/organizers', label: 'Organizers' },
+	{ href: '/faq', label: 'FAQ' },
+];
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<header class="sticky top-0 z-50 bg-stripe-dark border-b border-white/10">
+	<nav class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 py-3 sm:px-8" aria-label="Main">
+		<a href="/" class="wordmark text-[1.375rem] text-gold-score transition hover:opacity-85">
+			Sportykore
+		</a>
+
+		<div class="hidden items-center gap-7 md:flex">
+			{
+				links.map((link) => (
+					<a
+						href={link.href}
+						class="link-slide text-sm font-semibold text-white/80 hover:text-white"
+						aria-current={currentPath === link.href ? 'page' : undefined}
+					>
+						{link.label}
+					</a>
+				))
+			}
+		</div>
+
+		<div class="flex items-center gap-3">
+			<a href="#waitlist" class="btn-cta whitespace-nowrap px-4 py-2.5 text-sm sm:px-6">
+				Join the waitlist
+			</a>
+			<button
+				type="button"
+				class="inline-flex h-11 w-11 items-center justify-center rounded-[12px] border border-white/15 text-white md:hidden"
+				aria-expanded="false"
+				aria-controls="mobile-menu"
+				data-nav-toggle
+			>
+				<span class="sr-only">Menu</span>
+				<svg
+					class="h-5 w-5"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					aria-hidden="true"
+				>
+					<path data-icon-open d="M4 7h16M4 12h16M4 17h16"></path>
+					<path data-icon-close d="M6 6l12 12M18 6L6 18" class="hidden"></path>
+				</svg>
+			</button>
+		</div>
+	</nav>
+
+	<div id="mobile-menu" class="hidden border-t border-white/10 md:hidden" data-nav-menu>
+		<div class="mx-auto flex max-w-6xl flex-col px-5 py-3 sm:px-8">
+			{
+				links.map((link) => (
+					<a
+						href={link.href}
+						class="rounded-[12px] px-3 py-3.5 text-base font-semibold text-white/85 hover:bg-white/5 hover:text-white"
+						aria-current={currentPath === link.href ? 'page' : undefined}
+					>
+						{link.label}
+					</a>
+				))
+			}
+		</div>
+	</div>
+</header>
+
+<script>
+	const toggle = document.querySelector('[data-nav-toggle]');
+	const menu = document.querySelector('[data-nav-menu]');
+
+	if (toggle instanceof HTMLButtonElement && menu instanceof HTMLElement) {
+		const iconOpen = toggle.querySelector('[data-icon-open]');
+		const iconClose = toggle.querySelector('[data-icon-close]');
+
+		const setOpen = (open: boolean) => {
+			toggle.setAttribute('aria-expanded', String(open));
+			menu.classList.toggle('hidden', !open);
+			iconOpen?.classList.toggle('hidden', open);
+			iconClose?.classList.toggle('hidden', !open);
+		};
+
+		toggle.addEventListener('click', () => {
+			setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+		});
+
+		document.addEventListener('keydown', (event) => {
+			if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+				setOpen(false);
+				toggle.focus();
+			}
+		});
+
+		menu.addEventListener('click', (event) => {
+			if (event.target instanceof HTMLAnchorElement) setOpen(false);
+		});
+	}
+</script>

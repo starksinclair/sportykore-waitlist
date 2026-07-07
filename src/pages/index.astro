@@ -1,204 +1,334 @@
 ---
-import { Image } from 'astro:assets';
-import WaitlistForm from '../components/WaitlistForm.astro';
-import homeScreen from '../assets/screens/home-screen.png';
-import onboardingScreen from '../assets/screens/onboarding-screen.png';
-import loginScreen from '../assets/screens/login-screen.png';
 import Layout from '../layouts/Layout.astro';
-import SiteFooter from '../components/SiteFooter.astro';
+import LiveMatchCard from '../components/LiveMatchCard.astro';
+import Ticker from '../components/Ticker.astro';
+import PhoneFrame from '../components/PhoneFrame.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import WaitlistSection from '../components/WaitlistSection.astro';
+import { homepageFaqEntries } from '../lib/faq';
+
+import matchCenter from '../assets/screens/match-center.png';
+import playerProfile from '../assets/screens/player-profile.png';
+import manageLeagues from '../assets/screens/manage-leagues.png';
+import joinLeague from '../assets/screens/join-league.png';
 
 export const prerender = true;
+
+const steps = [
+	{
+		title: 'Create your competition',
+		text: 'Name it, set the season, add teams.',
+	},
+	{
+		title: 'Invite players by link',
+		text: 'Share one link in the team WhatsApp; players build their own profiles.',
+	},
+	{
+		title: 'Run match day live',
+		text: 'Score, minute, goals and assists, from one phone.',
+	},
+	{
+		title: 'The table keeps itself',
+		text: 'Standings and player stats update automatically after every result.',
+	},
+];
+
+const showcase = [
+	{
+		image: matchCenter,
+		alt: 'Sportykore live match center with big plus and minus score buttons, the running minute, and goal logging',
+		title: 'Run the match like a broadcast.',
+		text: 'Big +/− score buttons, the live minute, and scorers and assists logged as they happen — all from one phone at the pitch.',
+	},
+	{
+		image: playerProfile,
+		alt: 'Sportykore player profile showing per-season and career totals for goals, assists, fixtures, and cards',
+		title: 'Every player gets a record that lasts.',
+		text: 'Per-season numbers and career totals — goals, assists, fixtures, cards — a record that follows every player.',
+	},
+	{
+		image: manageLeagues,
+		alt: 'Sportykore competition management screen for creating, scheduling, and managing competitions',
+		title: 'Your competition, in your pocket.',
+		text: 'Create the competition, set the season, add teams, and manage every fixture from your phone.',
+	},
+	{
+		image: joinLeague,
+		alt: 'Sportykore join competition screen where a player pastes an invite code',
+		title: 'Joining takes one code.',
+		text: 'Your admin shares an invite link in the team WhatsApp. Paste the code, build your own profile, and you’re in.',
+	},
+];
+
+const roles = [
+	{
+		title: 'Players',
+		icon: 'player',
+		points: [
+			'A permanent profile — goals, assists, fixtures, and career totals.',
+			'Join any competition with one invite code.',
+			'Sign in with a one-time code — no passwords, ever.',
+		],
+		linkLabel: 'More for players',
+		href: '/players',
+	},
+	{
+		title: 'Coaches',
+		icon: 'coach',
+		points: [
+			'Formation-aware lineups with proper positions.',
+			'Substitutions that keep the pitch view accurate.',
+			'Player development recorded automatically from live matches.',
+		],
+		linkLabel: 'More for coaches',
+		href: '/players',
+	},
+	{
+		title: 'Organizers',
+		icon: 'organizer',
+		points: [
+			'Create a competition and add teams in minutes.',
+			'Run match day live from one phone.',
+			'Standings that update themselves after every result.',
+		],
+		linkLabel: 'More for organizers',
+		href: '/organizers',
+	},
+];
+
+const softwareApplicationSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'SoftwareApplication',
+	name: 'Sportykore',
+	applicationCategory: 'SportsApplication',
+	operatingSystem: 'iOS, Android',
+	description:
+		'Live match scoring, automatic standings, and permanent player profiles for grassroots football competitions in Nigeria.',
+	offers: {
+		'@type': 'Offer',
+		price: '0',
+		priceCurrency: 'NGN',
+	},
+};
 ---
 
 <Layout
-	title="Sportykore Waitlist | Where local leagues gather"
-	description="Join the Sportykore waitlist to follow local matches, see clear stats, and stay close to the leagues shaping grassroots football in Nigeria."
+	title="Sportykore — Where local competitions gather"
+	description="Live scores, automatic standings, and permanent player profiles for grassroots football competitions in Nigeria. Join the waitlist."
 	pathname="/"
+	structuredData={[softwareApplicationSchema]}
 >
-	<main class="overflow-x-clip">
-		<!-- Hero: app-style dark chrome + purple wash (design.md) -->
-		<section class="relative isolate min-h-[min(100svh,56rem)] bg-[#121212] lg:min-h-[min(100svh,52rem)]">
-			<div class="pointer-events-none absolute inset-0 hero-purple-wash"></div>
+	<main id="main" class="overflow-x-clip">
+		<!-- §5.1 Hero — the signature dark broadcast band -->
+		<section class="bg-stripe-hero px-5 pb-16 pt-14 text-white sm:px-8 lg:pb-24 lg:pt-20">
 			<div
-				class="pointer-events-none absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-black/20"
+				class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-x-14 gap-y-10 lg:grid-cols-2"
 			>
-			</div>
-
-			<div class="relative mx-auto max-w-6xl px-5 pb-24 pt-6 sm:px-8 sm:pb-28 sm:pt-8 lg:px-10 lg:pb-32">
-				<header
-					class="flex animate-hero-rise items-center justify-between gap-4 [animation-delay:0ms]"
-				>
-					<p class="font-brand text-[2.125rem] leading-none tracking-tight text-accent-400 sm:text-5xl">
-						Sportykore
+				<div class="space-y-6">
+					<p class="eyebrow hero-enter text-gold-soft" style="--enter-delay: 0ms">
+						Looking after the little man
 					</p>
-					<div class="flex items-center gap-2 sm:gap-3">
-						<span
-							class="hidden rounded-full border border-white/10 bg-white/6 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.28em] text-white/50 md:inline"
-						>
-							Waitlist
-						</span>
-					</div>
-				</header>
-
-				<div class="mt-12 grid gap-12 lg:mt-16 lg:grid-cols-12 lg:items-center lg:gap-10" id="form">
-					<div
-						class="animate-hero-rise max-w-xl space-y-6 lg:col-span-5 [animation-delay:70ms]"
+					<h1 class="display-1 hero-enter text-balance" style="--enter-delay: 150ms">
+						Where local competitions gather.
+					</h1>
+					<p
+						class="hero-enter max-w-lg text-[1.0625rem] leading-relaxed text-white/75"
+						style="--enter-delay: 300ms"
 					>
-					<WaitlistForm variant="dark" />
-					
-						<h1
-							class="font-display text-[2.625rem] font-bold leading-[1.06] tracking-tight text-white sm:text-5xl lg:text-[3.15rem]"
-						>
-							Where local leagues gather.
-						</h1>
-						<p class="max-w-md text-base leading-relaxed text-white/72 sm:text-[1.0625rem]">
-							Local football with a broadcast-style feed. Track live minutes, follow leagues, and read stats built for organizers and fans.
-						</p>
+						Live scores, standings that keep themselves, and player profiles that last — no more
+						“wetin be the score?” in the group chat.
+					</p>
+				</div>
 
-						<dl class="border-t border-white/10 pt-6">
-							<div class="grid grid-cols-3 gap-3 sm:gap-6">
-								<div>
-									<dt class="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/42">
-										Focus
-									</dt>
-									<dd class="mt-1.5 text-[13px] font-semibold text-white">Live feed</dd>
+				<div class="hero-enter lg:col-start-2 lg:row-span-2 lg:row-start-1" style="--enter-delay: 450ms">
+					<div class="mx-auto max-w-md">
+						<LiveMatchCard />
+					</div>
+				</div>
+
+				<div
+					class="hero-enter flex flex-col gap-3 sm:flex-row sm:items-center lg:col-start-1"
+					style="--enter-delay: 300ms"
+				>
+					<a href="#waitlist" class="btn-cta text-base">Join the waitlist</a>
+					<a href="#how-it-works" class="btn-ghost-dark text-base">See how it works</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- §5.2 Broadcast ticker (ambience) -->
+		<Ticker />
+
+		<!-- §5.3 How it works (light) -->
+		<section id="how-it-works" class="scroll-mt-20 bg-chalk px-5 py-20 sm:px-8 lg:py-24">
+			<div class="mx-auto max-w-6xl">
+				<div class="max-w-2xl" data-reveal>
+					<p class="eyebrow text-purple">How it works</p>
+					<h2 class="display-2 mt-3 text-ink">From grassroots competition to broadcast in four steps.</h2>
+				</div>
+
+				<ol class="mt-12 grid list-none grid-cols-1 gap-6 p-0 sm:grid-cols-2 lg:grid-cols-4">
+					{
+						steps.map((step, index) => (
+							<li data-reveal data-reveal-delay={String(index * 100)}>
+								<span class="flex h-10 w-10 items-center justify-center rounded-full bg-purple font-bold text-white">
+									{index + 1}
+								</span>
+								<h3 class="mt-4 text-lg font-bold text-ink">{step.title}</h3>
+								<p class="mt-2 text-[0.9375rem] leading-relaxed text-muted">{step.text}</p>
+							</li>
+						))
+					}
+				</ol>
+			</div>
+		</section>
+
+		<!-- §5.4 App screens showcase (dark broadcast band) -->
+		<section class="bg-stripe-dark px-5 py-20 text-white sm:px-8 lg:py-24">
+			<div class="mx-auto max-w-6xl">
+				<div class="max-w-2xl" data-reveal>
+					<p class="eyebrow text-gold-soft">Inside the app</p>
+					<h2 class="display-2 mt-3 text-white">The same chrome, from pitch to phone.</h2>
+				</div>
+
+				<div class="mt-14 space-y-20 lg:space-y-24">
+					{
+						showcase.map((row, index) => (
+							<div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
+								<div
+									class:list={['flex justify-center', index % 2 === 1 && 'lg:order-2']}
+									data-reveal
+								>
+									<div data-parallax class="w-[70%] max-w-70 sm:max-w-72">
+										<PhoneFrame src={row.image} alt={row.alt} />
+									</div>
 								</div>
-								<div>
-									<dt class="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/42">
-										Clarity
-									</dt>
-									<dd class="mt-1.5 text-[13px] font-semibold text-white">Clear stats</dd>
-								</div>
-								<div>
-									<dt class="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/42">
-										Scope
-									</dt>
-									<dd class="mt-1.5 text-[13px] font-semibold text-white">Local leagues</dd>
+								<div
+									class:list={[index % 2 === 1 && 'lg:order-1']}
+									data-reveal
+									data-reveal-delay="100"
+								>
+									<h3 class="font-display text-2xl font-bold leading-tight sm:text-3xl">
+										{row.title}
+									</h3>
+									<p class="mt-4 max-w-md leading-relaxed text-white/70">{row.text}</p>
 								</div>
 							</div>
-						</dl>
-					</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
 
-					<div class="relative mx-auto w-full max-w-88 sm:max-w-md lg:col-span-7 lg:mx-0 lg:max-w-none">
-						<div class="relative flex justify-center lg:justify-end">
-							<div
-								class="pointer-events-none absolute left-1/2 top-[18%] h-44 w-[min(100%,28rem)] -translate-x-1/2 rounded-full bg-brand-500/30 blur-3xl lg:left-auto lg:right-0 lg:translate-x-[10%]"
+		<!-- §5.5 For every role (light) -->
+		<section class="bg-chalk px-5 py-20 sm:px-8 lg:py-24">
+			<div class="mx-auto max-w-6xl">
+				<div class="max-w-2xl" data-reveal>
+					<p class="eyebrow text-purple">For every role</p>
+					<h2 class="display-2 mt-3 text-ink">Built for the whole competition.</h2>
+				</div>
+
+				<div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+					{
+						roles.map((role, index) => (
+							<article
+								class="flex flex-col rounded-2xl bg-white p-6 shadow-card sm:p-7"
+								data-reveal
+								data-reveal-delay={String(index * 100)}
 							>
-							</div>
-
-							<div class="animate-hero-float relative w-[82%] sm:w-[76%] lg:w-[min(100%,32rem)]">
-								<div
-									class="absolute left-[-10%] top-[6%] z-10 hidden w-[40%] md:block lg:left-[-4%] lg:top-[10%] lg:w-[32%]"
+								<span
+									class="flex h-11 w-11 items-center justify-center rounded-full bg-purple-tint text-purple"
+									aria-hidden="true"
 								>
-									<div
-										class="overflow-hidden rounded-[1.65rem] border border-white/14 bg-[#101012] p-2 shadow-phone"
-									>
-										<Image
-											src={onboardingScreen}
-											alt="Sportykore onboarding: real-time match data on a light card."
-											loading="lazy"
-											decoding="async"
-											sizes="(min-width: 1024px) 200px, 0px"
-											class="rounded-[1.2rem]"
-										/>
-									</div>
-								</div>
-
-								<div
-									class="relative z-1 overflow-hidden rounded-[2.1rem] border border-white/14 bg-[#101012] p-[10px] shadow-phone ring-1 ring-black/50"
+									{role.icon === 'player' && (
+										<svg
+											class="h-5.5 w-5.5"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+										>
+											<circle cx="12" cy="8" r="4" />
+											<path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1" />
+										</svg>
+									)}
+									{role.icon === 'coach' && (
+										<svg
+											class="h-5.5 w-5.5"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+										>
+											<rect x="4" y="3" width="16" height="18" rx="2" />
+											<path d="M9 3v2h6V3" />
+											<circle cx="12" cy="11" r="2.5" />
+											<path d="M8 17h8" />
+										</svg>
+									)}
+									{role.icon === 'organizer' && (
+										<svg
+											class="h-5.5 w-5.5"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+										>
+											<path d="M8 21h8" />
+											<path d="M12 17v4" />
+											<path d="M7 4h10v6a5 5 0 0 1-10 0V4Z" />
+											<path d="M7 6H4a2 2 0 0 0 2 4h1" />
+											<path d="M17 6h3a2 2 0 0 1-2 4h-1" />
+										</svg>
+									)}
+								</span>
+								<h3 class="mt-5 text-xl font-bold text-ink">{role.title}</h3>
+								<ul class="mt-4 flex-1 space-y-3 text-[0.9375rem] leading-relaxed text-muted">
+									{role.points.map((point) => (
+										<li class="flex gap-2.5">
+											<span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-score" aria-hidden="true" />
+											{point}
+										</li>
+									))}
+								</ul>
+								<a
+									href={role.href}
+									class="link-slide mt-6 inline-block self-start font-bold text-purple"
 								>
-									<Image
-										src={loginScreen}
-										alt="Sportykore home: matches, live tab, and league listings."
-										loading="eager"
-										fetchpriority="high"
-										decoding="async"
-										sizes="(min-width: 1280px) 400px, (min-width: 1024px) 38vw, 82vw"
-										class="rounded-[1.35rem]"
-									/>
-								</div>
-
-								<div
-									class="absolute right-[-8%] bottom-[5%] z-10 hidden w-[38%] md:block lg:right-[-2%] lg:bottom-[8%] lg:w-[30%]"
-								>
-									<div
-										class="overflow-hidden rounded-[1.65rem] border border-white/14 bg-[#101012] p-2 shadow-phone"
-									>
-										<Image
-											src={homeScreen}
-											alt="Sportykore welcome and sign-in flow."
-											loading="lazy"
-											decoding="async"
-											sizes="(min-width: 1024px) 190px, 0px"
-											class="rounded-[1.2rem]"
-										/>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+									{role.linkLabel} →
+								</a>
+							</article>
+						))
+					}
 				</div>
 			</div>
 		</section>
 
-		<!-- Editorial: cardless, Playfair sparingly (design.md) -->
-		<section class="border-t border-surface-200 bg-white px-5 py-20 sm:px-8 lg:py-24">
-			<div class="mx-auto max-w-2xl text-center">
-				<p class="text-[11px] font-bold uppercase tracking-[0.26em] text-brand-600">Why Sportykore</p>
-				<p class="mt-6 font-display text-2xl font-normal leading-snug text-slate-900 sm:text-[1.75rem]">
-					Connect with leagues, follow live minutes, and read stats that stay legible when the game speeds up.
-				</p>
-				<p class="mx-auto mt-8 max-w-lg text-sm leading-7 text-slate-600">
-					Built for grassroots football first — clear live context and league discovery that does not get buried.
-				</p>
-			</div>
-		</section>
-
-		<!-- Dark band: single device, app chrome -->
-		<section class="bg-stripe-dark px-5 py-20 sm:px-8 lg:py-24">
-			<div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-20">
-				<div class="max-w-lg space-y-5">
-					<p class="text-[11px] font-bold uppercase tracking-[0.24em] text-accent-200/90">Matchday UI</p>
-					<h2 class="font-display text-2xl font-bold leading-tight text-white sm:text-3xl">
-						Reserve your place for launch.
-					</h2>
-					<p class="text-[0.9375rem] leading-8 text-white/68">
-						One short form. We’ll reach you when the next wave opens for fans and organizers.
-					</p>
+		<!-- §5.6 FAQ preview (light) -->
+		<section class="border-t border-ink/5 bg-chalk px-5 py-20 sm:px-8 lg:py-24">
+			<div class="mx-auto max-w-3xl">
+				<div class="max-w-2xl" data-reveal>
+					<p class="eyebrow text-purple">Questions</p>
+					<h2 class="display-2 mt-3 text-ink">Asked and answered.</h2>
 				</div>
-				<div class="flex justify-center lg:justify-end">
-					<div
-						class="w-full max-w-68 overflow-hidden rounded-4xl border border-white/12 bg-[#101012] p-3 shadow-phone sm:max-w-74"
-					>
-						<Image
-							src={homeScreen}
-							alt="Sportykore app home with striped header and tab navigation."
-							loading="lazy"
-							decoding="async"
-							sizes="(min-width: 1024px) 300px, 85vw"
-							class="rounded-[1.35rem]"
-						/>
-					</div>
+
+				<div class="mt-10" data-reveal>
+					<FaqAccordion entries={homepageFaqEntries} />
 				</div>
-			</div>
-		</section>
 
-		<section class="border-t border-surface-200 bg-surface-50 px-5 py-14 sm:px-8">
-			<div
-				class="mx-auto flex max-w-4xl flex-col items-center justify-between gap-6 text-center sm:flex-row sm:text-left"
-			>
-				<p class="max-w-md text-sm leading-7 text-slate-600">
-					<span class="font-semibold text-slate-900">Sportykore</span> — local football, clearer for everyone on the continent.
+				<p class="mt-8" data-reveal>
+					<a href="/faq" class="link-slide font-bold text-purple">All questions →</a>
 				</p>
-				<a
-					class="text-sm font-semibold text-brand-600 underline decoration-brand-200 underline-offset-4 transition hover:text-brand-700 hover:decoration-brand-400"
-					href="#form"
-				>
-					Back to form
-				</a>
 			</div>
 		</section>
 
-		<SiteFooter secondaryHref="#form" secondaryLabel="Back to form" />
+		<!-- §5.7 Waitlist CTA -->
+		<WaitlistSection />
 	</main>
 </Layout>

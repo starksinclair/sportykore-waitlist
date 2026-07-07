@@ -24,3 +24,7 @@ pnpm-debug.log*
 .idea/
 .vercel/
 .vscode/
+
+CLAUDE.md
+WEBSITE_BUILD_BRIEF.md
+.claude/

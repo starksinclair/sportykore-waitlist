@@ -1,48 +1,82 @@
 ---
-interface Props {
-	/** Show a secondary link (e.g. back to waitlist form) */
-	secondaryHref?: string;
-	secondaryLabel?: string;
-}
-
-const { secondaryHref, secondaryLabel } = Astro.props;
 const year = new Date().getFullYear();
+
+const columns = [
+	{
+		heading: 'Product',
+		links: [
+			{ href: '/players', label: 'Players' },
+			{ href: '/organizers', label: 'Organizers' },
+			{ href: '/faq', label: 'FAQ' },
+		],
+	},
+	{
+		heading: 'Legal',
+		links: [
+			{ href: '/privacy', label: 'Privacy Policy' },
+			{ href: '/terms', label: 'Terms & Conditions' },
+		],
+	},
+	{
+		heading: 'Contact',
+		links: [
+			{ href: 'mailto:info@sportykore.com', label: 'info@sportykore.com' },
+		],
+	},
+	{
+		heading: 'Follow',
+		links: [
+			{ href: 'https://www.instagram.com/sportykore', label: 'Instagram', external: true },
+			{ href: 'https://x.com/sportykore', label: 'X', external: true },
+		],
+	},
+];
 ---
 
-<footer class="border-t border-white/10 bg-stripe-dark px-5 py-9 sm:px-8">
-	<div class="mx-auto flex max-w-6xl flex-col gap-6">
-		<div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-			<a href="/" class="font-brand text-2xl text-accent-400 transition hover:text-accent-500">
-				Sportykore
-			</a>
-			<nav
-				class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm"
-				aria-label="Legal and site links"
-			>
-				<a
-					class="font-semibold text-white/70 transition hover:text-accent-200"
-					href="/privacy"
-				>
-					Privacy Policy
+<footer class="bg-purple-deep px-5 py-12 text-white sm:px-8">
+	<div class="mx-auto max-w-6xl">
+		<div class="grid gap-10 md:grid-cols-[1.4fr_2fr]">
+			<div class="max-w-sm space-y-3">
+				<a href="/" class="wordmark inline-block text-3xl text-gold-score transition hover:opacity-85">
+					Sportykore
 				</a>
-				<a
-					class="font-semibold text-white/70 transition hover:text-accent-200"
-					href="/terms"
-				>
-					Terms &amp; Conditions
-				</a>
+				<p class="text-sm leading-relaxed text-white/70">
+					Live scores, automatic standings, and permanent player profiles for grassroots
+					football competitions.
+				</p>
+			</div>
+
+			<nav class="grid grid-cols-2 gap-8 sm:grid-cols-4" aria-label="Footer">
 				{
-					secondaryHref && secondaryLabel ? (
-						<a
-							class="font-semibold text-accent-300/90 underline decoration-accent-500/40 underline-offset-4 transition hover:text-accent-200"
-							href={secondaryHref}
-						>
-							{secondaryLabel}
-						</a>
-					) : null
+					columns.map((column) => (
+						<div class:list={[column.heading === 'Contact' && 'col-span-2 sm:col-span-1']}>
+							<p class="eyebrow text-gold-soft">{column.heading}</p>
+							<ul class="mt-4 space-y-3">
+								{column.links.map((link) => (
+									<li>
+										<a
+											href={link.href}
+											class="link-slide break-words text-sm font-semibold text-white/80 hover:text-white"
+											{...(link.external
+												? { target: '_blank', rel: 'noopener noreferrer' }
+												: {})}
+										>
+											{link.label}
+										</a>
+									</li>
+								))}
+							</ul>
+						</div>
+					))
 				}
 			</nav>
 		</div>
-		<p class="text-xs text-white/40">© {year} Sportykore. Local football, clearer for everyone on the continent.</p>
+
+		<div
+			class="mt-12 flex flex-col gap-2 border-t border-white/12 pt-6 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between"
+		>
+			<p>© {year} Sportykore. All rights reserved.</p>
+			<p>Made for grassroots football in Nigeria 🇳🇬 and Africa</p>
+		</div>
 	</div>
 </footer>
