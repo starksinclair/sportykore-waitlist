@@ -32,32 +32,42 @@ const {
 } = Astro.props;
 
 const siteUrl =
-	Astro.site ?? new URL(import.meta.env.PUBLIC_SITE_URL ?? 'https://waitlist.sportykore.com');
+	Astro.site ?? new URL(import.meta.env.PUBLIC_SITE_URL ?? 'https://sportykore.com');
 const canonicalUrl = new URL(pathname, siteUrl).toString();
 const ogImageUrl = new URL(ogImage, siteUrl).toString();
-const logoUrl = new URL('/favicon.svg', siteUrl).toString();
+const logoUrl = new URL('/favicon.ico', siteUrl).toString();
+const sitemapUrl = new URL('sitemap-index.xml', siteUrl).toString();
+
+const organizationDescription =
+	'Sportykore digitizes grassroots football competitions in Nigeria — live match scoring, automatic standings, and permanent player profiles.';
 
 const baseStructuredData = [
 	{
 		'@context': 'https://schema.org',
 		'@type': 'Organization',
+		'@id': `${siteUrl.toString()}#organization`,
 		name: 'Sportykore',
 		url: siteUrl.toString(),
 		logo: logoUrl,
 		email: 'info@sportykore.com',
-		description:
-			'Sportykore digitizes grassroots football competitions in Nigeria — live match scoring, automatic standings, and permanent player profiles.',
+		description: organizationDescription,
+		sameAs: [
+			'https://www.instagram.com/sportykore',
+			'https://x.com/sportykore',
+		],
 	},
 	{
 		'@context': 'https://schema.org',
 		'@type': 'WebSite',
+		'@id': `${siteUrl.toString()}#website`,
 		name: 'Sportykore',
+		alternateName: 'Sportykore Waitlist',
 		url: siteUrl.toString(),
+		description: organizationDescription,
 		publisher: {
-			'@type': 'Organization',
-			name: 'Sportykore',
-			logo: logoUrl,
+			'@id': `${siteUrl.toString()}#organization`,
 		},
+		inLanguage: 'en-NG',
 	},
 	...structuredData,
 ];
@@ -74,8 +84,10 @@ const baseStructuredData = [
 		<meta name="robots" content={robots} />
 		<meta name="theme-color" content="#121212" />
 		<link rel="canonical" href={canonicalUrl} />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="sitemap" type="application/xml" title="Sitemap" href={sitemapUrl} />
+		<link rel="icon" href="/favicon.ico" sizes="any" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<link rel="manifest" href="/site.webmanifest" />
 		<link
@@ -101,7 +113,7 @@ const baseStructuredData = [
 		<meta property="og:image" content={ogImageUrl} />
 		<meta property="og:image:width" content={String(ogImageWidth)} />
 		<meta property="og:image:height" content={String(ogImageHeight)} />
-		<meta property="og:image:alt" content="Sportykore — where local competitions gather" />
+		<meta property="og:image:alt" content="Sportykore — Looking after the little man. Where local competitions gather." />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
