@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
 import Analytics from '@vercel/analytics/astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 
 interface Props {
 	title?: string;
@@ -11,57 +13,53 @@ interface Props {
 	robots?: string;
 	ogImageWidth?: number;
 	ogImageHeight?: number;
+	/** Page-specific JSON-LD blocks (SoftwareApplication, FAQPage, BreadcrumbList…) */
+	structuredData?: Record<string, unknown>[];
+	/** Hide the sticky nav (e.g. /thanks keeps focus on the message) */
+	hideNav?: boolean;
 }
 
 const {
-	title = 'Sportykore Waitlist | Local football, live matches, clear stats',
-	description = 'Join the Sportykore waitlist to follow local matches, see clear stats, and stay close to the leagues shaping grassroots football in Nigeria.',
+	title = 'Sportykore — Where local competitions gather',
+	description = 'Live scores, automatic standings, and permanent player profiles for grassroots football competitions in Nigeria. Join the waitlist.',
 	pathname = '/',
-	ogImage = '/social-preview.svg',
+	ogImage = '/og/og-default.png',
 	robots = 'index, follow',
 	ogImageWidth = 1200,
 	ogImageHeight = 630,
+	structuredData = [],
+	hideNav = false,
 } = Astro.props;
 
-const siteUrl = Astro.site ?? new URL('https://waitlist.sportykore.com');
+const siteUrl =
+	Astro.site ?? new URL(import.meta.env.PUBLIC_SITE_URL ?? 'https://waitlist.sportykore.com');
 const canonicalUrl = new URL(pathname, siteUrl).toString();
 const ogImageUrl = new URL(ogImage, siteUrl).toString();
 const logoUrl = new URL('/favicon.svg', siteUrl).toString();
 
-const structuredData = [
+const baseStructuredData = [
 	{
 		'@context': 'https://schema.org',
 		'@type': 'Organization',
 		name: 'Sportykore',
 		url: siteUrl.toString(),
 		logo: logoUrl,
-		description,
+		email: 'info@sportykore.com',
+		description:
+			'Sportykore digitizes grassroots football competitions in Nigeria — live match scoring, automatic standings, and permanent player profiles.',
 	},
 	{
 		'@context': 'https://schema.org',
 		'@type': 'WebSite',
-		name: 'Sportykore Waitlist',
+		name: 'Sportykore',
 		url: siteUrl.toString(),
-		description,
 		publisher: {
 			'@type': 'Organization',
 			name: 'Sportykore',
 			logo: logoUrl,
 		},
 	},
-	{
-		'@context': 'https://schema.org',
-		'@type': 'WebPage',
-		name: title,
-		description,
-		url: canonicalUrl,
-		inLanguage: 'en-NG',
-		isPartOf: {
-			'@type': 'WebSite',
-			name: 'Sportykore Waitlist',
-			url: siteUrl.toString(),
-		},
-	},
+	...structuredData,
 ];
 ---
 
@@ -77,11 +75,22 @@ const structuredData = [
 		<meta name="theme-color" content="#121212" />
 		<link rel="canonical" href={canonicalUrl} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<link rel="manifest" href="/site.webmanifest" />
 		<link
-			rel="stylesheet"
-			href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Pacifico&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+			rel="preload"
+			href="/fonts/playfair-var.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="/fonts/open-sans-var.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
 		/>
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="Sportykore" />
@@ -92,15 +101,30 @@ const structuredData = [
 		<meta property="og:image" content={ogImageUrl} />
 		<meta property="og:image:width" content={String(ogImageWidth)} />
 		<meta property="og:image:height" content={String(ogImageHeight)} />
-		<meta property="og:image:alt" content="Sportykore waitlist preview" />
+		<meta property="og:image:alt" content="Sportykore — where local competitions gather" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={ogImageUrl} />
 		<title>{title}</title>
-		<script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+		<script>
+			document.documentElement.classList.add('js');
+		</script>
+		<script type="application/ld+json" set:html={JSON.stringify(baseStructuredData)} />
 	</head>
 	<body class="min-h-screen">
+		<a
+			href="#main"
+			class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-100 focus:rounded-[14px] focus:bg-gold-cta focus:px-5 focus:py-3 focus:font-bold focus:text-ink"
+		>
+			Skip to content
+		</a>
+		{!hideNav && <SiteNav />}
 		<slot />
+		<SiteFooter />
+		<script>
+			import { initReveals } from '../lib/reveal';
+			initReveals();
+		</script>
 	</body>
 </html>

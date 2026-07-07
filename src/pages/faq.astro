@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import WaitlistSection from '../components/WaitlistSection.astro';
+import { faqGroups, allFaqEntries } from '../lib/faq';
+
+export const prerender = true;
+
+const faqPageSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	mainEntity: allFaqEntries.map((entry) => ({
+		'@type': 'Question',
+		name: entry.question,
+		acceptedAnswer: {
+			'@type': 'Answer',
+			text: entry.answer,
+		},
+	})),
+};
+
+const breadcrumbSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'BreadcrumbList',
+	itemListElement: [
+		{ '@type': 'ListItem', position: 1, name: 'Home', item: '/' },
+		{ '@type': 'ListItem', position: 2, name: 'Frequently asked questions', item: '/faq' },
+	],
+};
+---
+
+<Layout
+	title="Frequently asked questions — Sportykore"
+	description="Honest answers for players, coaches, and organizers — joining competitions, live scoring, stats, streaming, data ownership, and what Sportykore costs."
+	pathname="/faq"
+	structuredData={[faqPageSchema, breadcrumbSchema]}
+>
+	<main id="main" class="overflow-x-clip">
+		<section class="bg-stripe-hero px-5 pb-14 pt-14 text-white sm:px-8 lg:pb-16 lg:pt-18">
+			<div class="mx-auto max-w-6xl">
+				<p class="eyebrow hero-enter text-gold-soft" style="--enter-delay: 0ms">Questions</p>
+				<h1 class="display-1 hero-enter mt-4 text-balance" style="--enter-delay: 150ms">
+					Asked and answered.
+				</h1>
+				<p
+					class="hero-enter mt-5 max-w-lg text-[1.0625rem] leading-relaxed text-white/75"
+					style="--enter-delay: 300ms"
+				>
+					Everything players, coaches, and organizers ask us — answered plainly.
+				</p>
+			</div>
+		</section>
+
+		<section class="bg-chalk px-5 py-16 sm:px-8 lg:py-20">
+			<div class="mx-auto max-w-3xl space-y-12">
+				{
+					faqGroups.map((group) => (
+						<div data-reveal>
+							<h2 class="eyebrow text-purple">{group.heading}</h2>
+							<div class="mt-5">
+								<FaqAccordion entries={group.entries} />
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</section>
+
+		<WaitlistSection />
+	</main>
+</Layout>

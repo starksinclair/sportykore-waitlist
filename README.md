@@ -1,6 +1,6 @@
 # Sportykore Waitlist
 
-Landing page and waitlist signup for [Sportykore](https://waitlist.sportykore.com) — local football with a broadcast-style feed. Collects signups and stores them in Google Sheets.
+Landing page and waitlist signup for [Sportykore](https://waitlist.sportykore.com) — grassroots football competitions with live scores and permanent player profiles. Collects signups and stores them in Google Sheets.
 
 ## Stack
 

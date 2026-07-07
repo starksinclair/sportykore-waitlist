@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://waitlist.sportykore.com/sitemap.xml
+Sitemap: https://waitlist.sportykore.com/sitemap-index.xml

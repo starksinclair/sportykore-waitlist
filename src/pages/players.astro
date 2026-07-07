@@ -1,0 +1,183 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PhoneFrame from '../components/PhoneFrame.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import WaitlistSection from '../components/WaitlistSection.astro';
+import { faqGroups } from '../lib/faq';
+
+import playerProfile from '../assets/screens/player-profile.png';
+import joinLeague from '../assets/screens/join-league.png';
+
+export const prerender = true;
+
+const playerFaq = faqGroups
+	.filter((group) => group.heading === 'For players' || group.heading === 'For coaches')
+	.flatMap((group) => group.entries);
+
+const benefits = [
+	{
+		title: 'A record that lasts',
+		text: 'Goals, assists, fixtures, cards — per season and across your career. Your numbers add up, season after season.',
+	},
+	{
+		title: 'One code and you’re in',
+		text: 'Your competition admin shares an invite link or code, usually in the team WhatsApp. Paste it in the app and build your own profile in minutes.',
+	},
+	{
+		title: 'No passwords, ever',
+		text: 'Sign in with a one-time code sent to you. Nothing to remember, nothing to forget.',
+	},
+	{
+		title: 'Works on your phone, on your data',
+		text: 'Built offline-first for ordinary phones and patchy data. Everything syncs when you’re back online.',
+	},
+	{
+		title: 'You own your account',
+		text: 'Nobody creates a profile for you — you own it. If you ever delete your account, your personal details are removed and only anonymous match history remains.',
+	},
+	{
+		title: 'Free for players',
+		text: 'Sportykore costs players nothing.',
+	},
+];
+
+const coachPoints = [
+	{
+		title: 'Formation-aware lineups',
+		text: 'Set your lineup with proper positions on a real pitch view.',
+	},
+	{
+		title: 'Substitutions that stay accurate',
+		text: 'Make your subs during the match and the pitch view keeps up.',
+	},
+	{
+		title: 'Development, recorded automatically',
+		text: 'Every player’s goals, assists, and appearances are captured from live matches — per season and across their career.',
+	},
+];
+
+const breadcrumbSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'BreadcrumbList',
+	itemListElement: [
+		{ '@type': 'ListItem', position: 1, name: 'Home', item: '/' },
+		{ '@type': 'ListItem', position: 2, name: 'For players & coaches', item: '/players' },
+	],
+};
+---
+
+<Layout
+	title="For players & coaches — Sportykore"
+	description="Permanent player profiles, one-code competition joining, passwordless sign-in, and offline-friendly live stats for grassroots footballers and coaches in Nigeria."
+	pathname="/players"
+	structuredData={[breadcrumbSchema]}
+>
+	<main id="main" class="overflow-x-clip">
+		<section class="bg-stripe-hero px-5 pb-16 pt-14 text-white sm:px-8 lg:pb-20 lg:pt-18">
+			<div class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+				<div class="space-y-6">
+					<p class="eyebrow hero-enter text-gold-soft" style="--enter-delay: 0ms">
+						For players &amp; coaches
+					</p>
+					<h1 class="display-1 hero-enter text-balance" style="--enter-delay: 150ms">
+						Your football story, kept properly.
+					</h1>
+					<p
+						class="hero-enter max-w-lg text-[1.0625rem] leading-relaxed text-white/75"
+						style="--enter-delay: 300ms"
+					>
+						Every goal, assist, and appearance recorded from live matches — building a profile
+						that follows you from season to season.
+					</p>
+					<div class="hero-enter flex flex-col gap-3 sm:flex-row" style="--enter-delay: 450ms">
+						<a href="#waitlist" class="btn-cta text-base">Join the waitlist</a>
+					</div>
+				</div>
+				<div class="hero-enter flex justify-center lg:justify-end" style="--enter-delay: 450ms">
+					<div class="w-[62%] max-w-64 sm:max-w-68">
+						<PhoneFrame
+							src={playerProfile}
+							alt="Sportykore player profile with per-season and career totals for goals, assists, fixtures, and cards"
+							loading="eager"
+							sizes="(min-width: 1024px) 272px, 62vw"
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="bg-chalk px-5 py-20 sm:px-8 lg:py-24">
+			<div class="mx-auto max-w-6xl">
+				<div class="max-w-2xl" data-reveal>
+					<p class="eyebrow text-purple">For players</p>
+					<h2 class="display-2 mt-3 text-ink">What you get.</h2>
+				</div>
+
+				<div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+					{
+						benefits.map((benefit, index) => (
+							<article
+								class="rounded-2xl bg-white p-6 shadow-card"
+								data-reveal
+								data-reveal-delay={String((index % 3) * 100)}
+							>
+								<h3 class="text-lg font-bold text-ink">{benefit.title}</h3>
+								<p class="mt-2.5 text-[0.9375rem] leading-relaxed text-muted">{benefit.text}</p>
+							</article>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="bg-stripe-dark px-5 py-20 text-white sm:px-8 lg:py-24">
+			<div class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+				<div class="flex justify-center" data-reveal>
+					<div data-parallax class="w-[70%] max-w-70 sm:max-w-72">
+						<PhoneFrame
+							src={joinLeague}
+							alt="Sportykore join competition screen where a player pastes an invite code to join their competition"
+						/>
+					</div>
+				</div>
+				<div data-reveal data-reveal-delay="100">
+					<p class="eyebrow text-gold-soft">For coaches</p>
+					<h2 class="display-2 mt-3 text-white">Manage the team, not the paperwork.</h2>
+					<ul class="mt-8 space-y-6">
+						{
+							coachPoints.map((point) => (
+								<li class="flex gap-4">
+									<span
+										class="mt-1 h-2 w-2 shrink-0 rounded-full bg-gold-score"
+										aria-hidden="true"
+									/>
+									<div>
+										<h3 class="font-bold text-white">{point.title}</h3>
+										<p class="mt-1 text-[0.9375rem] leading-relaxed text-white/70">{point.text}</p>
+									</div>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section class="bg-chalk px-5 py-20 sm:px-8 lg:py-24">
+			<div class="mx-auto max-w-3xl">
+				<div class="max-w-2xl" data-reveal>
+					<p class="eyebrow text-purple">Questions</p>
+					<h2 class="display-2 mt-3 text-ink">Player and coach questions.</h2>
+				</div>
+				<div class="mt-10" data-reveal>
+					<FaqAccordion entries={playerFaq} />
+				</div>
+				<p class="mt-8" data-reveal>
+					<a href="/faq" class="link-slide font-bold text-purple">All questions →</a>
+				</p>
+			</div>
+		</section>
+
+		<WaitlistSection />
+	</main>
+</Layout>

@@ -19,7 +19,7 @@ Optional one-liner prompt pattern:
 
 ## 1. Goal & success
 
-**Primary goal:** `[e.g. collect emails for App Store launch / notify when Android drops / invite league admins first]`
+**Primary goal:** `[e.g. collect emails for App Store launch / notify when Android drops / invite competition admins first]`
 
 **Success metric:** `[e.g. submit rate, qualitative feedback, influencer shares]`
 
@@ -29,7 +29,7 @@ Optional one-liner prompt pattern:
 
 ## 2. Audience
 
-**Who lands here:** `[fans / league organizers / both — be specific]`
+**Who lands here:** `[fans / competition organizers / both — be specific]`
 
 **Primary geography:** `[e.g. Nigeria first, West Africa, global]`
 
@@ -52,7 +52,7 @@ Optional one-liner prompt pattern:
 **Secondary CTA (optional):** `[e.g. Watch a 30s clip — link TBD]`
 
 **Micro-trust line (optional, only if honest):**  
-`[e.g. Built with local organizers in Lagos / In private beta with N leagues]`
+`[e.g. Built with local organizers in Lagos / In private beta with N competitions]`
 
 ---
 
@@ -60,7 +60,7 @@ Optional one-liner prompt pattern:
 
 Keep them **concrete** (what the user gets), not feature soup.
 
-1. `Connect with local leagues, track live matches, and dive into broadcast-level stats.`
+1. `Connect with local competitions, track live matches, and dive into broadcast-level stats.`
 2. `See clear stats built for organizers and fans.`
 3. `Join the waitlist to be the first to know when the app launches.`
 

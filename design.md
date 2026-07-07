@@ -9,21 +9,21 @@ Brief for marketing and waitlisting pages. Derived from the mobile app design sy
 **Name:** Sportykore
 
 **Elevator pitch (adapt from intro):**  
-Local football meets a broadcast-style feed — connect with leagues, follow live matches, and see clear stats built for organizers and fans.
+Local football meets a broadcast-style feed — connect with competitions, follow live matches, and see clear stats built for organizers and fans.
 
 **Headline variants (adapt from legacy in-app copy):**
 
-- Badge-style label: **LOCAL BALL**
-- Primary headline direction: **The gathering — where local leagues gather.**
+- Badge-style label: **LOOKING AFTER THE LITTLE MAN**
+- Primary headline direction: **The gathering — where local competitions gather.**
 - Supporting line:
-  Connect with local leagues, track live matches, and dive into broadcast-level stats.
+  Connect with local competitions, track live matches, and dive into broadcast-level stats.
 
 **Short slogan ideas for waitlist hero** (pick one lane):
 
 | Style     | Copy                                              |
 | --------- | ------------------------------------------------- |
-| Community | Sportykore — **where local leagues gather.**      |
-| Action    | **Local ball. Live matches. Clear stats.**        |
+| Community | Sportykore — **where local competitions gather.** |
+| Mission   | **Looking after the little man.**                 |
 | Product   | **Your gathering place for grassroots football.** |
 
 Tune copy for geography and dialect (e.g. Africa-first, Nigerian English) as your product settles.
@@ -34,7 +34,7 @@ Tune copy for geography and dialect (e.g. Africa-first, Nigerian English) as you
 
 - **Warm, direct, confident** — not corporate sportsbook.
 - **Short sentences.** Favor verbs: gather, track, follow, organize.
-- **Inclusive** wording: local leagues, teams, fans; avoid jargon.
+- **Inclusive** wording: local competitions, teams, fans; avoid jargon.
 
 ---
 

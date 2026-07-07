@@ -1,85 +1,111 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------------------
+   Self-hosted fonts (public/fonts) — no runtime Google Fonts.
+   Pacifico: wordmark only. Playfair: display headlines. Open Sans: everything.
+--------------------------------------------------------------------------- */
+@font-face {
+	font-family: "Pacifico";
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url("/fonts/pacifico-400.woff2") format("woff2");
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+		U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+		U+FEFF, U+FFFD;
+}
+
+@font-face {
+	font-family: "Open Sans Variable";
+	font-style: normal;
+	font-weight: 300 800;
+	font-display: swap;
+	src: url("/fonts/open-sans-var.woff2") format("woff2-variations");
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+		U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+		U+FEFF, U+FFFD;
+}
+
+@font-face {
+	font-family: "Playfair Display Variable";
+	font-style: normal;
+	font-weight: 400 900;
+	font-display: swap;
+	src: url("/fonts/playfair-var.woff2") format("woff2-variations");
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+		U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+		U+FEFF, U+FFFD;
+}
+
+/* ---------------------------------------------------------------------------
+   Brand tokens (locked — WEBSITE_BUILD_BRIEF.md §2). Do not reinterpret.
+--------------------------------------------------------------------------- */
 :root {
-	--brand-50: #f4ebfc;
-	--brand-100: #ead9f8;
-	--brand-200: #d3b3f1;
-	--brand-300: #bc8cea;
-	--brand-400: #8f49c8;
-	--brand-500: #4a148c;
-	--brand-600: #3b1070;
-	--brand-700: #2f0d5a;
-	--brand-800: #230943;
-	--brand-900: #17052d;
-	--accent-200: #fbe9b8;
-	--accent-400: #f9b923;
-	--accent-500: #e6a817;
-	--accent-600: #f2a900;
-	--ink-950: #121212;
-	--surface-0: #ffffff;
-	--surface-50: #f8f8fa;
-	--surface-100: #f5f5f5;
-	--surface-200: #e5e7eb;
-	--surface-300: #cbd5e1;
-	--slate-700: #475569;
-	--slate-800: #1e293b;
-	--slate-900: #0f172a;
+	--pitch-black: #121212;
+	--purple: #4a148c;
+	--purple-dark: #3b1070;
+	--purple-deep: #2c0c54;
+	--purple-tint: #e5d3f4;
+	--score-gold: #e6a817; /* identity: wordmark, scores, highlights — never button fills */
+	--cta-gold: #f2a900; /* action: buttons/CTAs only, always with #171717 label */
+	--gold-soft: #fbe9b8;
+	--chalk: #f8f8fa;
+	--ink: #171717;
+	--muted: #64748b;
 	--live-red: #ba0c2f;
-	--auth-purple: #5d2a8e;
-	--auth-purple-active: #4f2478;
-	--focus-ring: #f9b923;
-	--radius-primary: 13px;
-	--radius-card: 28px;
-	--shadow-soft: 0 24px 80px rgba(10, 15, 28, 0.24);
-	--shadow-phone: 0 20px 50px rgba(6, 8, 18, 0.28);
+
+	--font-pacifico: "Pacifico", cursive;
+	--font-open-sans: "Open Sans Variable", "Open Sans", system-ui, sans-serif;
+	--font-playfair: "Playfair Display Variable", "Playfair Display", Georgia, serif;
+
+	--ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+	--shadow-card: 0 8px 30px rgba(18, 18, 18, 0.08);
+	--shadow-phone: 0 24px 60px rgba(6, 8, 18, 0.4);
+	--focus-ring: var(--cta-gold);
 }
 
 @theme inline {
-	--font-brand: "Pacifico", cursive;
-	--font-body: "Open Sans", sans-serif;
-	--font-display: "Playfair Display", serif;
-	--color-brand-50: var(--brand-50);
-	--color-brand-100: var(--brand-100);
-	--color-brand-200: var(--brand-200);
-	--color-brand-300: var(--brand-300);
-	--color-brand-400: var(--brand-400);
-	--color-brand-500: var(--brand-500);
-	--color-brand-600: var(--brand-600);
-	--color-brand-700: var(--brand-700);
-	--color-brand-800: var(--brand-800);
-	--color-brand-900: var(--brand-900);
-	--color-accent-200: var(--accent-200);
-	--color-accent-400: var(--accent-400);
-	--color-accent-500: var(--accent-500);
-	--color-accent-600: var(--accent-600);
-	--color-ink-950: var(--ink-950);
-	--color-surface-0: var(--surface-0);
-	--color-surface-50: var(--surface-50);
-	--color-surface-100: var(--surface-100);
-	--color-surface-200: var(--surface-200);
-	--color-surface-300: var(--surface-300);
-	--color-slate-700: var(--slate-700);
-	--color-slate-800: var(--slate-800);
-	--color-slate-900: var(--slate-900);
-	--color-live-red: var(--live-red);
-	--color-auth-purple: var(--auth-purple);
+	--font-brand: var(--font-pacifico);
+	--font-body: var(--font-open-sans);
+	--font-display: var(--font-playfair);
+
+	--color-pitch: var(--pitch-black);
+	--color-purple: var(--purple);
+	--color-purple-dark: var(--purple-dark);
+	--color-purple-deep: var(--purple-deep);
+	--color-purple-tint: var(--purple-tint);
+	--color-gold-score: var(--score-gold);
+	--color-gold-cta: var(--cta-gold);
+	--color-gold-soft: var(--gold-soft);
+	--color-chalk: var(--chalk);
+	--color-ink: var(--ink);
+	--color-muted: var(--muted);
+	--color-live: var(--live-red);
 }
 
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
 @layer base {
 	html {
-		font-family: var(--font-body);
-		background: var(--surface-0);
-		color: var(--slate-900);
+		font-family: var(--font-open-sans);
+		background: var(--chalk);
+		color: var(--ink);
 		scroll-behavior: smooth;
+		interpolate-size: allow-keywords;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
 	}
 
 	body {
 		margin: 0;
 		min-width: 320px;
-		background:
-			radial-gradient(circle at top, rgba(74, 20, 140, 0.12), transparent 35%),
-			var(--surface-0);
-		color: var(--slate-900);
+		font-size: 1rem;
+		line-height: 1.6;
 	}
 
 	* {
@@ -89,6 +115,7 @@
 	img {
 		display: block;
 		max-width: 100%;
+		height: auto;
 	}
 
 	a {
@@ -103,13 +130,13 @@
 	}
 
 	button,
-	[type='submit'] {
+	[type="submit"] {
 		cursor: pointer;
 	}
 
 	::selection {
-		background: rgba(249, 185, 35, 0.35);
-		color: var(--slate-900);
+		background: rgba(230, 168, 23, 0.35);
+		color: var(--ink);
 	}
 
 	:focus-visible {
@@ -118,86 +145,370 @@
 	}
 }
 
+/* ---------------------------------------------------------------------------
+   Brand components & utilities
+--------------------------------------------------------------------------- */
 @layer utilities {
+	/* Signature dark chrome — the app's own header texture (exact recipe). */
 	.bg-stripe-dark {
-		background-color: var(--ink-950);
+		background-color: #121212;
 		background-image: repeating-linear-gradient(
 			-45deg,
 			#121212 0 18px,
-			rgba(230, 168, 23, 0.08) 18px 20px
+			rgba(230, 168, 23, 0.05) 18px 20px
 		);
 	}
 
-	.text-balance {
-		text-wrap: balance;
+	/* Hero variant: purple depth wash layered above the stripes. */
+	.bg-stripe-hero {
+		background-color: #121212;
+		background-image:
+			linear-gradient(180deg, rgba(44, 12, 84, 0.5), rgba(18, 18, 18, 1) 65%),
+			repeating-linear-gradient(
+				-45deg,
+				#121212 0 18px,
+				rgba(230, 168, 23, 0.05) 18px 20px
+			);
 	}
 
-	.shadow-soft {
-		box-shadow: var(--shadow-soft);
+	.wordmark {
+		font-family: var(--font-pacifico);
+		font-weight: 400;
+		line-height: 1.4;
+	}
+
+	.eyebrow {
+		font-family: var(--font-open-sans);
+		font-size: 0.75rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	.display-1 {
+		font-family: var(--font-playfair);
+		font-weight: 800;
+		font-size: clamp(2.2rem, 1.35rem + 3.6vw, 4rem);
+		line-height: 1.05;
+	}
+
+	.display-2 {
+		font-family: var(--font-playfair);
+		font-weight: 700;
+		font-size: clamp(1.6rem, 1.2rem + 1.9vw, 2.5rem);
+		line-height: 1.15;
+	}
+
+	/* CTA Gold is for buttons ONLY (two-gold rule). */
+	.btn-cta {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		border-radius: 14px;
+		background: var(--cta-gold);
+		color: #171717;
+		font-weight: 700;
+		padding: 0.875rem 1.75rem;
+		box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+		transition:
+			transform 0.4s var(--ease-out-quint),
+			box-shadow 0.4s var(--ease-out-quint),
+			background-color 0.2s ease;
+	}
+
+	.btn-cta:hover {
+		transform: translateY(-2px);
+		box-shadow:
+			0 1px 0 rgba(255, 255, 255, 0.3) inset,
+			0 10px 24px rgba(242, 169, 0, 0.28);
+	}
+
+	.btn-ghost-dark {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		border-radius: 14px;
+		border: 1.5px solid rgba(248, 248, 250, 0.35);
+		color: #f8f8fa;
+		font-weight: 700;
+		padding: 0.875rem 1.75rem;
+		transition:
+			transform 0.4s var(--ease-out-quint),
+			border-color 0.2s ease,
+			background-color 0.2s ease;
+	}
+
+	.btn-ghost-dark:hover {
+		transform: translateY(-2px);
+		border-color: rgba(248, 248, 250, 0.7);
+		background: rgba(248, 248, 250, 0.06);
+	}
+
+	/* Link underline slide micro-interaction. */
+	.link-slide {
+		background-image: linear-gradient(currentColor, currentColor);
+		background-repeat: no-repeat;
+		background-position: 0 100%;
+		background-size: 0% 1.5px;
+		transition: background-size 0.4s var(--ease-out-quint);
+		padding-bottom: 2px;
+	}
+
+	.link-slide:hover,
+	.link-slide:focus-visible {
+		background-size: 100% 1.5px;
+	}
+
+	.shadow-card {
+		box-shadow: var(--shadow-card);
 	}
 
 	.shadow-phone {
 		box-shadow: var(--shadow-phone);
 	}
 
-	.hero-glow {
-		background:
-			radial-gradient(circle at top left, rgba(249, 185, 35, 0.25), transparent 35%),
-			radial-gradient(circle at 80% 20%, rgba(74, 20, 140, 0.5), transparent 35%);
+	.text-balance {
+		text-wrap: balance;
 	}
 
-	.hero-purple-wash {
-		background: linear-gradient(
-			165deg,
-			rgba(60, 9, 108, 0.92) 0%,
-			rgba(74, 20, 140, 0.55) 42%,
-			rgba(18, 18, 18, 0.2) 100%
-		);
+	/* CSS phone frame — crisp at any DPI; frames are never baked into images. */
+	.phone-frame {
+		border-radius: 40px;
+		background: #101012;
+		border: 1px solid rgba(248, 248, 250, 0.14);
+		padding: 10px;
+		box-shadow: var(--shadow-phone);
 	}
 
-	.waitlist-select-light {
-		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23475569'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+	.phone-frame > img {
+		border-radius: 30px;
+	}
+
+	/* LIVE dot pulse. */
+	.live-dot {
+		width: 0.5rem;
+		height: 0.5rem;
+		border-radius: 999px;
+		background: var(--live-red);
+		animation: live-pulse 1.6s ease-in-out infinite;
+	}
+
+	@keyframes live-pulse {
+		0%,
+		100% {
+			opacity: 1;
+			box-shadow: 0 0 0 0 rgba(186, 12, 47, 0.55);
+		}
+		50% {
+			opacity: 0.75;
+			box-shadow: 0 0 0 5px rgba(186, 12, 47, 0);
+		}
+	}
+
+	/* LIVE badge: live-red pill, white label — matches the app's own visual
+	   and keeps AA contrast on dark surfaces. */
+	.live-badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		border-radius: 999px;
+		background: var(--live-red);
+		color: #ffffff;
+		font-size: 0.6875rem;
+		font-weight: 700;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		padding: 0.25rem 0.65rem;
+	}
+
+	.live-badge::before {
+		content: "";
+		width: 0.4rem;
+		height: 0.4rem;
+		border-radius: 999px;
+		background: #ffffff;
+		animation: live-pulse-soft 1.6s ease-in-out infinite;
+	}
+
+	@keyframes live-pulse-soft {
+		0%,
+		100% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0.45;
+		}
+	}
+
+	/* Scroll reveals (rise-and-fade). Hidden state only applies once JS is
+	   confirmed (html.js) so content is never lost without JavaScript. */
+	html.js [data-reveal] {
+		opacity: 0;
+		transform: translateY(48px);
+	}
+
+	html.js [data-reveal].is-revealed {
+		opacity: 1;
+		transform: none;
+		transition:
+			opacity 0.6s var(--ease-out-quint),
+			transform 0.6s var(--ease-out-quint);
+		transition-delay: var(--reveal-delay, 0ms);
+	}
+
+	/* Hero load sequence (the one orchestrated moment). */
+	.hero-enter {
+		animation: rise-in 0.7s var(--ease-out-quint) both;
+		animation-delay: var(--enter-delay, 0ms);
+	}
+
+	@keyframes rise-in {
+		from {
+			opacity: 0;
+			transform: translateY(24px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	/* Broadcast ticker (ambient) — duplicated track marquee. */
+	.ticker-track {
+		display: flex;
+		width: max-content;
+		animation: ticker-scroll 40s linear infinite;
+	}
+
+	.ticker:hover .ticker-track {
+		animation-play-state: paused;
+	}
+
+	@keyframes ticker-scroll {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(-50%);
+		}
+	}
+
+	/* Live match card moments. */
+	.goal-pulse {
+		animation: goal-pulse 0.9s var(--ease-out-quint);
+	}
+
+	@keyframes goal-pulse {
+		0% {
+			text-shadow: 0 0 0 rgba(230, 168, 23, 0);
+			transform: scale(1);
+		}
+		35% {
+			text-shadow: 0 0 24px rgba(230, 168, 23, 0.9);
+			transform: scale(1.12);
+		}
+		100% {
+			text-shadow: 0 0 0 rgba(230, 168, 23, 0);
+			transform: scale(1);
+		}
+	}
+
+	.goal-line-enter {
+		animation: goal-line 0.5s var(--ease-out-quint) both;
+	}
+
+	@keyframes goal-line {
+		from {
+			opacity: 0;
+			transform: translateY(10px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
 	}
 
 	.waitlist-select-dark {
 		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23ffffff'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' stroke-opacity='0.55' d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
 	}
 
-	@keyframes hero-rise {
-		from {
-			opacity: 0;
-			transform: translateY(1.25rem);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
+	/* FAQ accordion */
+	.faq-item {
+		border-radius: 14px;
+		background: #ffffff;
+		box-shadow: var(--shadow-card);
 	}
 
-	@keyframes hero-float {
-		from,
-		to {
-			transform: translateY(0);
-		}
-		50% {
-			transform: translateY(-0.35rem);
-		}
+	.faq-item summary {
+		list-style: none;
+		cursor: pointer;
 	}
 
-	.animate-hero-rise {
-		animation: hero-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+	.faq-item summary::-webkit-details-marker {
+		display: none;
 	}
 
-	.animate-hero-float {
-		animation: hero-float 7s ease-in-out infinite;
+	.faq-chevron {
+		transition: transform 0.4s var(--ease-out-quint);
 	}
 
+	.faq-item[open] .faq-chevron {
+		transform: rotate(180deg);
+	}
+
+	/* Smooth accordion height (progressive enhancement; older browsers snap). */
+	.faq-item::details-content {
+		opacity: 0;
+		block-size: 0;
+		overflow: hidden;
+		transition:
+			content-visibility 0.45s allow-discrete,
+			opacity 0.45s var(--ease-out-quint),
+			block-size 0.45s var(--ease-out-quint);
+	}
+
+	.faq-item[open]::details-content {
+		opacity: 1;
+		block-size: auto;
+	}
+
+	/* ---------------------------------------------------------------
+	   Reduced motion: ticker gone, live card static, reveals instant,
+	   only opacity-based hover feedback remains.
+	--------------------------------------------------------------- */
 	@media (prefers-reduced-motion: reduce) {
-		.animate-hero-rise,
-		.animate-hero-float {
+		.ticker {
+			display: none;
+		}
+
+		.live-dot,
+		.live-badge::before,
+		.goal-pulse,
+		.goal-line-enter,
+		.hero-enter {
 			animation: none;
+		}
+
+		html.js [data-reveal] {
 			opacity: 1;
 			transform: none;
+			transition: none;
+		}
+
+		.btn-cta,
+		.btn-ghost-dark,
+		.link-slide,
+		.faq-chevron,
+		.faq-item::details-content {
+			transition: none;
+		}
+
+		.btn-cta:hover,
+		.btn-ghost-dark:hover {
+			transform: none;
+			opacity: 0.9;
 		}
 	}
 }

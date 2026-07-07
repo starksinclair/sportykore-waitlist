@@ -1,0 +1,31 @@
+---
+/**
+ * Broadcast ticker (§5.2) — ambient scrolling scorelines under the hero.
+ * Pure CSS marquee (duplicated track). aria-hidden; fully removed under
+ * prefers-reduced-motion (see .ticker rule in global.css).
+ */
+const scorelines = [
+	'FT · Surulere 2–1 Agege',
+	"78′ · Eko Stars 1–0 Tafawa FC",
+	'FT · Unity FC 3–3 Garden City',
+	'HT · Ajegunle Rovers 0–0 Yaba United',
+	"52′ · Apapa Town 1–1 Mushin Kings",
+	'FT · Gwarinpa FC 2–0 Wuse Warriors',
+];
+
+const track = scorelines.join('   ···   ');
+---
+
+<div
+	class="ticker overflow-hidden border-y border-gold-score/25 bg-pitch py-2.5"
+	aria-hidden="true"
+>
+	<div class="ticker-track">
+		<span class="whitespace-nowrap pr-16 text-[0.8125rem] font-semibold tracking-wide text-white/65">
+			{track}
+		</span>
+		<span class="whitespace-nowrap pr-16 text-[0.8125rem] font-semibold tracking-wide text-white/65">
+			{track}
+		</span>
+	</div>
+</div>

@@ -1,0 +1,21 @@
+---
+import WaitlistForm from './WaitlistForm.astro';
+---
+
+<section
+	id="waitlist"
+	class="bg-stripe-dark scroll-mt-20 px-5 py-20 sm:px-8 lg:py-24"
+	aria-labelledby="waitlist-heading"
+>
+	<div class="mx-auto max-w-xl text-center" data-reveal>
+		<p class="wordmark text-3xl text-gold-score">Sportykore</p>
+		<h2 id="waitlist-heading" class="display-2 mt-4 text-white">Be there for kickoff.</h2>
+		<p class="mx-auto mt-4 max-w-md text-white/70">
+			We’re onboarding early competitions now — join the waitlist and you’ll be first in when early
+			access opens.
+		</p>
+		<div class="mt-10">
+			<WaitlistForm />
+		</div>
+	</div>
+</section>
