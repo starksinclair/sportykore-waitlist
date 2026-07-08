@@ -84,4 +84,4 @@ Production site: **https://waitlist.sportykore.com**
 
 ## Waitlist form
 
-Submissions include name, email, phone (normalized to E.164), and role (`fan`, `organizer`, `player`, `coach`, `other`). Successful signups redirect to `/thanks`.
+Submissions include name, email, phone (normalized to E.164), and role (`fan`, `organizer`, `player`, `coach`, `academy`, `club`, `school`, `other`). Successful signups redirect to `/thanks`.
