@@ -1,6 +1,15 @@
 import { normalizePhoneToE164 } from './phone';
 
-export const roleOptions = ['fan', 'organizer', 'player', 'coach', 'other'] as const;
+export const roleOptions = [
+	'fan',
+	'organizer',
+	'player',
+	'coach',
+	'academy',
+	'club',
+	'school',
+	'other',
+] as const;
 
 export type WaitlistRole = (typeof roleOptions)[number];
 
