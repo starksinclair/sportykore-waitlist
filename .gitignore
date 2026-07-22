@@ -28,3 +28,5 @@ pnpm-debug.log*
 CLAUDE.md
 WEBSITE_BUILD_BRIEF.md
 .claude/
+AGENTS.md
+.agents/

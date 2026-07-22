@@ -1,0 +1,19 @@
+---
+const title = Astro.locals.starlightRoute.entry.data.title;
+---
+
+<h1 id="_top">{title}</h1>
+
+<style>
+	@layer starlight.core {
+		h1 {
+			color: var(--sl-color-white);
+			font-family: var(--font-playfair);
+			font-size: var(--sl-text-h1);
+			font-weight: 800;
+			letter-spacing: 0;
+			line-height: var(--sl-line-height-headings);
+			margin-top: 1rem;
+		}
+	}
+</style>
