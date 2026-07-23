@@ -74,6 +74,89 @@
 	opacity: 0.75;
 }
 
+.legal-document .steps-box {
+	background: var(--purple-tint);
+	border: 1px solid rgba(74, 20, 140, 0.2);
+	border-radius: 16px;
+	padding: 2rem 2.25rem;
+	margin-bottom: 2rem;
+}
+
+.legal-document .steps-box h2 {
+	font-family: var(--font-playfair);
+	font-size: 1.375rem;
+	font-weight: 700;
+	color: var(--purple-deep);
+	margin-bottom: 1.25rem;
+}
+
+.legal-document .steps-box ol {
+	counter-reset: steps;
+	list-style: none;
+	margin: 0 0 1.25rem;
+	padding: 0;
+}
+
+.legal-document .steps-box li {
+	counter-increment: steps;
+	display: flex;
+	gap: 0.875rem;
+	align-items: baseline;
+	font-size: 0.9375rem;
+	color: var(--ink);
+	margin-bottom: 0.875rem;
+}
+
+.legal-document .steps-box li::before {
+	content: counter(steps);
+	background: var(--purple);
+	border-radius: 999px;
+	color: #ffffff;
+	flex-shrink: 0;
+	font-size: 0.75rem;
+	font-weight: 800;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.legal-document .steps-box > p {
+	color: var(--ink);
+	font-size: 0.9375rem;
+	margin-bottom: 0.75rem;
+}
+
+.legal-document .steps-cta {
+	background: var(--cta-gold);
+	border-radius: 999px;
+	color: #171717 !important;
+	display: inline-block;
+	font-weight: 800;
+	padding: 0.375rem 0.875rem;
+	text-decoration: none !important;
+}
+
+.legal-document .steps-cta:hover {
+	box-shadow: 0 10px 24px rgba(242, 169, 0, 0.28);
+}
+
+.legal-document .steps-copy {
+	font-size: 0.8125rem;
+	color: var(--muted);
+}
+
+.legal-document .steps-copy code {
+	background: #ffffff;
+	border: 1px solid rgba(23, 23, 23, 0.1);
+	border-radius: 0.375rem;
+	color: var(--ink);
+	font-weight: 700;
+	padding: 0.15rem 0.4rem;
+	user-select: all;
+}
+
 .legal-document .toc {
 	background: #ffffff;
 	border: 1px solid rgba(23, 23, 23, 0.08);
@@ -227,8 +310,13 @@
 
 @media (max-width: 640px) {
 	.legal-document .section,
-	.legal-document .intro-box {
+	.legal-document .intro-box,
+	.legal-document .steps-box {
 		padding: 1.5rem 1.25rem;
+	}
+
+	.legal-document .steps-box li {
+		font-size: 0.875rem;
 	}
 
 	.legal-document .toc,

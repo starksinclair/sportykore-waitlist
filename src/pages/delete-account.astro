@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LegalPage from '../components/LegalPage.astro';
+import deleteAccountBody from '../content/legal/delete-account-body.html?raw';
+
+export const prerender = true;
+---
+
+<Layout
+	title="Delete Your Account — Sportykore"
+	description="How to request deletion of your Sportykore account by email, what data is deleted, what is kept and why, and the retention period."
+	pathname="/delete-account"
+>
+	<LegalPage
+		pageTitle="Delete Your Sportykore Account"
+		lead="How to request deletion of your Sportykore account, and exactly what happens to your data."
+		bodyHtml={deleteAccountBody}
+	/>
+</Layout>
