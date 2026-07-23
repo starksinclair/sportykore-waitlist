@@ -20,7 +20,7 @@ This page helps you get into Sportykore with an email code instead of a password
 5. Enter the code in the app.
 6. Continue into Sportykore.
 
-<!-- SCREENSHOT: login email screen and OTP screen -->
+![Login email screen and OTP screen](../screenshots/login-email-otp.png)
 
 ## Recover access
 

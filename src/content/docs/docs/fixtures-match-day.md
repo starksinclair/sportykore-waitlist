@@ -21,7 +21,7 @@ This page helps organizers run a game from fixture setup through full time.
 6. Choose a saved venue, create a venue inline, or type a one-off venue name.
 7. Save.
 
-<!-- SCREENSHOT: Add game sheet -->
+![Add game sheet](../screenshots/add-game-sheet.png)
 
 ## Start and control the match
 
@@ -32,7 +32,7 @@ This page helps organizers run a game from fixture setup through full time.
 5. Choose full time, extra time, penalties, or pause when needed.
 6. Confirm the full-time score or penalty scores.
 
-<!-- SCREENSHOT: match center clock controls -->
+![Match Center clock controls](../screenshots/match-center-clock-controls.png)
 
 ## Score goals quickly
 
@@ -59,7 +59,9 @@ This page helps organizers run a game from fixture setup through full time.
 6. Pick player off, player on, and minute.
 7. Save the substitution.
 
-<!-- SCREENSHOT: match center stats tab and substitution panel -->
+![Match Center stats tab](../screenshots/match-center-stats.png)
+
+![Match Center substitution panel](../screenshots/match-center-substitutions.png)
 
 ## Finish with penalties
 

@@ -20,7 +20,7 @@ This page helps organizers and players understand player profiles and career tot
 5. Join the team roster.
 6. Open your profile from **Profile**, squad pages, match events, search, or public pages.
 
-<!-- SCREENSHOT: player profile creation and public player profile -->
+![Player profile creation and public player profile](../screenshots/player-profile-creation-public.png)
 
 ## View player stats
 

@@ -20,7 +20,7 @@ This page helps organizers add locations and use them on games.
 6. Enter the venue details.
 7. Save.
 
-<!-- SCREENSHOT: Manage > Venues add venue sheet -->
+![Manage Venues add venue sheet](../screenshots/manage-venues-add-sheet.png)
 
 ## Attach a venue to a fixture
 
@@ -29,7 +29,7 @@ This page helps organizers add locations and use them on games.
 3. Choose **No venue**, a saved league venue, a new venue, or a one-off venue name.
 4. Save the game.
 
-<!-- SCREENSHOT: fixture venue picker -->
+![Fixture venue picker](../screenshots/fixture-venue-picker.png)
 
 ## Rules & good to know
 

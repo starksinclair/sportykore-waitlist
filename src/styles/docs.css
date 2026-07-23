@@ -172,6 +172,10 @@
 		padding: 0.05rem 0.25rem;
 	}
 
+	.sl-markdown-content p {
+		line-height: 1.75;
+	}
+
 	.sidebar-pane {
 		background-image: linear-gradient(180deg, rgba(44, 12, 84, 0.14), transparent 18rem);
 	}
@@ -215,4 +219,21 @@ h1#_top {
 	font-family: var(--font-playfair);
 	font-weight: 800;
 	letter-spacing: 0;
+}
+
+/* Product screenshots are phone captures — cap them to a card-sized
+   preview so they read as inline illustrations, not full-bleed panels
+   that push the surrounding steps out of view. Outside the starlight.*
+   layers on purpose: Starlight's own unlayered base image rules would
+   otherwise win the cascade regardless of layer order. */
+.sl-markdown-content p > img:only-child {
+	background: var(--sl-color-bg-sidebar);
+	border: 1px solid var(--sl-color-hairline);
+	border-radius: 18px;
+	box-shadow: var(--shadow-card);
+	display: block;
+	height: auto;
+	margin: 1.75rem auto;
+	max-width: 300px;
+	width: 100%;
 }

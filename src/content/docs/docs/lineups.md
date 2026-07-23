@@ -21,7 +21,7 @@ This page helps organizers and team admins submit official lineups for a match.
 6. Add up to 12 substitutes.
 7. Save the lineup.
 
-<!-- SCREENSHOT: lineup builder formation and bench controls -->
+![Lineup builder formation and bench controls](../screenshots/lineup-builder-formation-bench.png)
 
 ## Rules & good to know
 

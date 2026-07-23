@@ -20,7 +20,7 @@ This page helps organizers run a competition over more than one season.
 6. Pick the format: league/round-robin or knockout.
 7. Add the season.
 
-<!-- SCREENSHOT: manage settings season controls -->
+![Manage settings season controls](../screenshots/manage-season-settings.png)
 
 ## Switch seasons on public pages
 

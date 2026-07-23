@@ -17,7 +17,7 @@ This page helps viewers find competitions and follow what is happening.
 3. Browse competitions by country or match day.
 4. Open a league, match, team, player, or country page.
 
-<!-- SCREENSHOT: home feed country accordion -->
+![Home feed country accordion](../screenshots/home-feed-country-accordion.png)
 
 ## Use search
 
@@ -25,7 +25,7 @@ This page helps viewers find competitions and follow what is happening.
 2. Enter a query.
 3. Open a grouped result for players, countries, leagues, or teams.
 
-<!-- SCREENSHOT: global search grouped results -->
+![Global search grouped results](../screenshots/search-grouped-results.png)
 
 ## Favourite a league
 

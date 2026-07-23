@@ -19,7 +19,7 @@ This page helps organizers and viewers understand league tables.
 5. Open the public league page.
 6. Open **Standings**.
 
-<!-- SCREENSHOT: public league standings tab -->
+![Public league standings tab](../screenshots/public-standings-tab.png)
 
 ## Change tiebreakers
 

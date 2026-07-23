@@ -20,7 +20,7 @@ This page helps organizers run a knockout competition or knockout season.
 5. Put teams in seed order.
 6. Create the bracket.
 
-<!-- SCREENSHOT: knockout setup and seeding screen -->
+![Knockout setup and seeding screen](../screenshots/knockout-setups-seeding.png)
 
 ## Run ties
 
@@ -31,7 +31,7 @@ This page helps organizers run a knockout competition or knockout season.
 5. When the current round is complete, generate the next round.
 6. After final and third-place requirements are met, mark the stage complete.
 
-<!-- SCREENSHOT: bracket view and tie action controls -->
+![Bracket view and tie action controls](../screenshots/bracket-view-tie-controls.png)
 
 ## Rules & good to know
 

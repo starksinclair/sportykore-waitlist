@@ -22,7 +22,7 @@ This page explains what Sportykore can still show on patchy data and what needs 
 2. Keep the screen open while the match is active.
 3. Sportykore listens for game updates and refreshes affected views.
 
-<!-- SCREENSHOT: public match page receiving live score update -->
+![Public match page receiving a live score update](../screenshots/public-match-live-update.png)
 
 ## Rules & good to know
 

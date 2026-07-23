@@ -24,7 +24,7 @@ This page helps an organizer create a new competition from the mobile app.
 9. Review the setup.
 10. Create the competition.
 
-<!-- SCREENSHOT: create competition wizard format picker -->
+![Create competition wizard format picker](../screenshots/create-competition-format-picker.png)
 
 ## Rules & good to know
 

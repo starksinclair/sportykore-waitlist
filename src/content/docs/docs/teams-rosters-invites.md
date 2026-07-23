@@ -19,7 +19,7 @@ This page helps organizers build teams and rosters for a season.
 5. Add or update the team name and optional logo.
 6. Save.
 
-<!-- SCREENSHOT: Manage > Teams list and team edit sheet -->
+![Manage Teams list and team edit sheet](../screenshots/manage-teams-edit-sheet.png)
 
 ## Assign team admins
 
