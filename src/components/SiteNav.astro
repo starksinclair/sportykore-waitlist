@@ -1,4 +1,6 @@
 ---
+import { googlePlayUrl } from '../lib/site';
+
 const links = [
 	{ href: '/players', label: 'Players' },
 	{ href: '/organizers', label: 'Organizers' },
@@ -30,8 +32,13 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 		</div>
 
 		<div class="flex items-center gap-3">
-			<a href="#waitlist" class="btn-cta whitespace-nowrap px-4 py-2.5 text-sm sm:px-6">
-				Join the waitlist
+			<a
+				href={googlePlayUrl}
+				class="btn-cta whitespace-nowrap px-4 py-2.5 text-sm sm:px-6"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				Get it on Google Play
 			</a>
 			<button
 				type="button"

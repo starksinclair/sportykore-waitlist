@@ -1,14 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PhoneFrame from '../components/PhoneFrame.astro';
+import { googlePlayUrl } from '../lib/site';
 import onboarding from '../assets/screens/onboarding.png';
 
 export const prerender = true;
 ---
 
 <Layout
-	title="You’re on the list — Sportykore"
-	description="Your details are in. Sportykore will email you when early access opens."
+	title="Message Sent — Sportykore"
+	description="Your message has been sent to Sportykore. Download the Android app on Google Play or watch for the iOS version soon."
 	pathname="/thanks"
 	robots="noindex, follow"
 	hideNav
@@ -24,16 +25,17 @@ export const prerender = true;
 					</p>
 					<div class="max-w-xl space-y-4">
 						<p class="eyebrow hero-enter text-gold-soft" style="--enter-delay: 150ms">
-							You’re on the list
+							Message sent
 						</p>
 						<h1 class="display-1 hero-enter text-balance" style="--enter-delay: 150ms">
-							Thanks for joining the waitlist.
+							Thanks for contacting Sportykore.
 						</h1>
 						<p
 							class="hero-enter max-w-md text-[1.0625rem] leading-relaxed text-white/75"
 							style="--enter-delay: 300ms"
 						>
-							You’re in line for early access as we onboard our first competitions.
+							We’ll get back to you soon. Android is already available on Google Play,
+							and the iOS version is coming soon.
 						</p>
 					</div>
 
@@ -45,11 +47,11 @@ export const prerender = true;
 						<ul class="mt-4 space-y-3 text-sm leading-relaxed text-white/75">
 							<li class="flex gap-2.5">
 								<span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-score" aria-hidden="true"></span>
-								We’ll email you when early access opens — no spam, just the invite.
+								Download Sportykore now if you use Android.
 							</li>
 							<li class="flex gap-2.5">
 								<span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-score" aria-hidden="true"></span>
-								Tell your competition admin and teammates — competitions get onboarded together.
+								If you’re setting up a competition, we can help you get teams, invites, and match day ready.
 							</li>
 							<li class="flex gap-2.5">
 								<span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-score" aria-hidden="true"></span>
@@ -72,9 +74,22 @@ export const prerender = true;
 						</ul>
 					</div>
 
-					<a href="/" class="btn-ghost-dark hero-enter text-base" style="--enter-delay: 450ms">
-						← Back to the site
-					</a>
+					<div
+						class="hero-enter flex flex-col gap-3 sm:flex-row sm:items-center"
+						style="--enter-delay: 450ms"
+					>
+						<a
+							href={googlePlayUrl}
+							class="btn-cta text-base"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							Get it on Google Play
+						</a>
+						<a href="/" class="btn-ghost-dark text-base">
+							← Back to the site
+						</a>
+					</div>
 				</div>
 
 				<div class="hero-enter flex justify-center lg:justify-end" style="--enter-delay: 450ms">

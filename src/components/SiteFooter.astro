@@ -1,10 +1,13 @@
 ---
+import { googlePlayUrl } from '../lib/site';
+
 const year = new Date().getFullYear();
 
 const columns = [
 	{
 		heading: 'Product',
 		links: [
+			{ href: googlePlayUrl, label: 'Google Play', external: true },
 			{ href: '/players', label: 'Players' },
 			{ href: '/organizers', label: 'Organizers' },
 			{ href: '/docs', label: 'Docs' },
@@ -22,6 +25,7 @@ const columns = [
 	{
 		heading: 'Contact',
 		links: [
+			{ href: '/#contact', label: 'Contact Sportykore' },
 			{ href: 'mailto:info@sportykore.com', label: 'info@sportykore.com' },
 		],
 	},
@@ -45,6 +49,9 @@ const columns = [
 				<p class="text-sm leading-relaxed text-white/70">
 					Live scores, automatic standings, team-admin lineups, match stats, and permanent
 					player profiles for grassroots football competitions.
+				</p>
+				<p class="text-sm font-semibold text-gold-soft">
+					Android is available now on Google Play. iOS is coming soon.
 				</p>
 			</div>
 

@@ -1,6 +1,6 @@
 ---
 import '../styles/legal.css';
-import WaitlistSection from './WaitlistSection.astro';
+import ContactSection from './ContactSection.astro';
 
 interface Props {
 	pageTitle: string;
@@ -25,5 +25,5 @@ const { pageTitle, lead, bodyHtml } = Astro.props;
 		<article class="legal-document mx-auto max-w-3xl" set:html={bodyHtml} />
 	</section>
 
-	<WaitlistSection />
+	<ContactSection />
 </main>

@@ -2,9 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import PhoneFrame from '../components/PhoneFrame.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
-import WaitlistSection from '../components/WaitlistSection.astro';
+import ContactSection from '../components/ContactSection.astro';
 import { faqGroups } from '../lib/faq';
-import { absoluteUrl } from '../lib/site';
+import { absoluteUrl, googlePlayUrl } from '../lib/site';
 
 import playerProfile from '../assets/screens/player-profile.png';
 import joinLeague from '../assets/screens/join-league.png';
@@ -96,7 +96,10 @@ const breadcrumbSchema = {
 						with highlights and awards that follows you from season to season.
 					</p>
 					<div class="hero-enter flex flex-col gap-3 sm:flex-row" style="--enter-delay: 450ms">
-						<a href="#waitlist" class="btn-cta text-base">Join the waitlist</a>
+						<a href={googlePlayUrl} class="btn-cta text-base" target="_blank" rel="noopener noreferrer">
+							Get it on Google Play
+						</a>
+						<a href="#contact" class="btn-ghost-dark text-base">Contact Sportykore</a>
 					</div>
 				</div>
 				<div class="hero-enter flex justify-center lg:justify-end" style="--enter-delay: 450ms">
@@ -188,6 +191,6 @@ const breadcrumbSchema = {
 			</div>
 		</section>
 
-		<WaitlistSection />
+		<ContactSection />
 	</main>
 </Layout>
