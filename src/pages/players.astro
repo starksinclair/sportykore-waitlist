@@ -18,11 +18,11 @@ const playerFaq = faqGroups
 const benefits = [
 	{
 		title: 'A record that lasts',
-		text: 'Goals, assists, fixtures, cards — per season and across your career. Your numbers add up, season after season.',
+		text: 'Goals, assists, appearances, cards, highlights, and man of the match awards. Your numbers add up season after season.',
 	},
 	{
 		title: 'One code and you’re in',
-		text: 'Your competition admin shares an invite link or code, usually in the team WhatsApp. Paste it in the app and build your own profile in minutes.',
+		text: 'Your competition admin shares an invite link or code, usually in the team WhatsApp. Paste it in the app and build your own profile in minutes. Codes expire after 7 days.',
 	},
 	{
 		title: 'No passwords, ever',
@@ -30,7 +30,7 @@ const benefits = [
 	},
 	{
 		title: 'Works on your phone, on your data',
-		text: 'Built offline-first for ordinary phones and patchy data. Everything syncs when you’re back online.',
+		text: 'Built for ordinary phones and patchy data. Key match-day actions are offline-friendly and sync when the connection comes back.',
 	},
 	{
 		title: 'You own your account',
@@ -45,15 +45,15 @@ const benefits = [
 const coachPoints = [
 	{
 		title: 'Formation-aware lineups',
-		text: 'Set your lineup with proper positions on a real pitch view.',
+		text: 'Set your lineup with proper positions on a real pitch view, or let the organizer assign a team admin for your squad.',
 	},
 	{
 		title: 'Substitutions that stay accurate',
-		text: 'Make your subs during the match and the pitch view keeps up.',
+		text: 'Prepared lineups make substitutions cleaner and keep match-day records easier to trust.',
 	},
 	{
 		title: 'Development, recorded automatically',
-		text: 'Every player’s goals, assists, and appearances are captured from live matches — per season and across their career.',
+		text: 'Goals, assists, appearances, cards, awards, and optional advanced stats build the player record from live matches.',
 	},
 ];
 
@@ -73,8 +73,8 @@ const breadcrumbSchema = {
 ---
 
 <Layout
-	title="Grassroots League Player Profiles & Live Stats | Sportykore"
-	description="Permanent player profiles, one-code competition joining, passwordless sign-in, and offline-friendly live stats for grassroots footballers and coaches."
+	title="Grassroots Competition Player Profiles & Live Stats | Sportykore"
+	description="Permanent player profiles, one-code competition joining, highlights, awards, passwordless sign-in, and live stats for grassroots footballers and coaches."
 	pathname="/players"
 	structuredData={[breadcrumbSchema]}
 >
@@ -93,7 +93,7 @@ const breadcrumbSchema = {
 						style="--enter-delay: 300ms"
 					>
 						Every goal, assist, and appearance recorded from live matches — building a profile
-						that follows you from season to season.
+						with highlights and awards that follows you from season to season.
 					</p>
 					<div class="hero-enter flex flex-col gap-3 sm:flex-row" style="--enter-delay: 450ms">
 						<a href="#waitlist" class="btn-cta text-base">Join the waitlist</a>
@@ -103,7 +103,7 @@ const breadcrumbSchema = {
 					<div class="w-[62%] max-w-64 sm:max-w-68">
 						<PhoneFrame
 							src={playerProfile}
-							alt="Sportykore player profile with per-season and career totals for goals, assists, fixtures, and cards"
+							alt="Sportykore player profile with season stats, career totals, highlights, awards, and details"
 							loading="eager"
 							sizes="(min-width: 1024px) 272px, 62vw"
 						/>
@@ -149,6 +149,10 @@ const breadcrumbSchema = {
 				<div data-reveal data-reveal-delay="100">
 					<p class="eyebrow text-gold-soft">For coaches</p>
 					<h2 class="display-2 mt-3 text-white">Manage the team, not the paperwork.</h2>
+					<p class="mt-4 max-w-md leading-relaxed text-white/70">
+						Team admins can focus on the squad: prepare lineups, keep substitutions clean, and help
+						the competition capture the right player records on match day.
+					</p>
 					<ul class="mt-8 space-y-6">
 						{
 							coachPoints.map((point) => (

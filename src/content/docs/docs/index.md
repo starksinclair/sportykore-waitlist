@@ -25,12 +25,11 @@ Sportykore is built for grassroots football organizers and players. A competitio
 
 - Public viewers can browse competitions, matches, teams, players, standings, brackets, venues, and public lineups.
 - Organizers own competitions and manage settings, seasons, teams, venues, games, stages, score updates, stats, invites, and roster changes.
-- Team admins can manage lineups and match day for their assigned team.
-- Players join through invite links or codes and get public profiles with career stats.
-- Recently loaded screens can stay visible with limited connection, but creating, scoring, and editing still require a connection.
+- Team admins can manage lineups for their assigned team.
+- Players join through invite links or codes and get public profiles with career stats, highlights, and awards.
+- Recently loaded screens can stay visible with limited connection. Advanced tracking can queue locally, but most management actions still need the API.
 
 ## Related pages
 
 - [Limits and roadmap](/docs/limits-roadmap/)
 - [Maintaining these docs](/docs/contributing/)
-

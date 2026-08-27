@@ -1,9 +1,9 @@
 ---
 title: Standings
-description: Understand how round-robin tables update, sort, and ignore knockout games.
+description: Understand how round-robin tables update, sort, use manual adjustments, and ignore knockout games.
 ---
 
-This page helps organizers and viewers understand league tables.
+This page helps organizers and viewers understand competition tables.
 
 ## Before you start
 
@@ -28,6 +28,13 @@ This page helps organizers and viewers understand league tables.
 3. Save the league.
 4. Open standings again to see the active season re-sorted.
 
+## Manage table adjustments and zones
+
+1. Open **Manage > Standings**.
+2. Use standing tools to add approved point adjustments with a reason.
+3. Resolve tied cohorts manually when your competition rules need a final decision.
+4. Add promotion, playoff, qualification, or relegation zones to highlight table positions.
+
 ## Rules & good to know
 
 - Sportykore caches standings rows instead of computing only at request time.
@@ -38,7 +45,9 @@ This page helps organizers and viewers understand league tables.
 - Points always rank first.
 - Supported tiebreaker criteria include goal difference, goals scored, wins, goals conceded, away goals scored, and head-to-head mini-league variants.
 - Final fallback is team ID order.
-- Point deductions, manual table adjustments, promotion zones, relegation zones, and playoff-zone highlighting were not found as live features.
+- Point adjustments require a reason.
+- Manual ordering is intended for tied teams.
+- Standing zones are visual markers only. They do not change points or results.
 
 ## Related pages
 
@@ -46,4 +55,3 @@ This page helps organizers and viewers understand league tables.
 - [Fixtures and live match day](/docs/fixtures-match-day/)
 - [Knockout brackets](/docs/knockout-brackets/)
 - [Limits and roadmap](/docs/limits-roadmap/)
-

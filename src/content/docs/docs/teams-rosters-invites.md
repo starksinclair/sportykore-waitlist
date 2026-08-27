@@ -35,7 +35,7 @@ This page helps organizers build teams and rosters for a season.
 2. Tap **Invite to team**.
 3. Select the team.
 4. Generate the invite link.
-5. Share the link or code with the player.
+5. Copy the join code or share the invite with the player.
 
 ## Player joins with an invite
 
@@ -60,17 +60,18 @@ This page helps organizers build teams and rosters for a season.
 - Teams belong to the whole league.
 - Deleting a team cascades through related games, standings, roster entries, stats, and invites.
 - At least two teams are needed to schedule games.
-- Invites expire after 7 days.
+- Invites and join codes expire after 7 days.
+- General invite links can be reused until they expire.
 - Invites are copied or shared by the organizer. The backend does not email player invites automatically.
 - If a user has no player profile, Sportykore asks them to create one during invite acceptance.
 - Roster statuses include active, transferred, injured, suspended, pending, and inactive.
 - The observed mobile edit sheet exposes jersey number, position, and captain flag. It displays status but does not edit it.
 - Positions are attack, midfield, defence, and goalkeeper.
-- Team admins can manage lineups and match day for their assigned team only.
+- Team admins can manage lineups for their assigned team only.
+- Prepared lineups make substitutions and man of the match selection cleaner on match day.
 
 ## Related pages
 
 - [Lineups](/docs/lineups/)
 - [Player profiles and stats](/docs/player-profiles-stats/)
 - [Fixtures and live match day](/docs/fixtures-match-day/)
-

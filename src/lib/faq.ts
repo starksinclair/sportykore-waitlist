@@ -20,7 +20,7 @@ export const faqGroups: FaqGroup[] = [
 				id: 1,
 				question: 'How do I join a competition on Sportykore?',
 				answer:
-					'Your competition admin shares an invite link or code — usually in the team WhatsApp. Paste it in the app and you’re in. You create your own profile in minutes.',
+					'Your competition admin shares an invite link or join code, usually in the team WhatsApp. Paste it in the app and you’re in. Join codes expire after 7 days, and you create your own profile in minutes.',
 			},
 			{
 				id: 2,
@@ -37,7 +37,7 @@ export const faqGroups: FaqGroup[] = [
 				id: 4,
 				question: 'What happens to my stats each season?',
 				answer:
-					'They add up. Your profile keeps per-season numbers and career totals — goals, assists, fixtures, cards. A record you can show anyone.',
+					'They add up. Your profile keeps per-season numbers and career totals for goals, assists, appearances, cards, highlights, and man of the match awards. It becomes a record you can show anyone.',
 			},
 			{
 				id: 5,
@@ -49,7 +49,7 @@ export const faqGroups: FaqGroup[] = [
 				id: 6,
 				question: 'Will it work on my phone and my data plan?',
 				answer:
-					'Yes — it’s built for ordinary phones and unreliable data. The app is offline-friendly and syncs when you’re back online.',
+					'Yes. Sportykore is built for ordinary phones and unreliable data. Key match-day actions are offline-friendly and sync when the connection comes back.',
 			},
 		],
 	},
@@ -60,13 +60,13 @@ export const faqGroups: FaqGroup[] = [
 				id: 7,
 				question: 'Can I manage my lineup?',
 				answer:
-					'Yes — formation-aware lineups with proper positions, and substitutions that keep the pitch view accurate.',
+					'Yes. Organizers can assign team admins, and team admins can set lineups for their own team. Lineups unlock cleaner substitutions and man of the match selection on match day.',
 			},
 			{
 				id: 8,
 				question: 'Can I track my players’ development?',
 				answer:
-					'Every player’s goals, assists, and appearances are recorded automatically from live matches — per season and across their career.',
+					'Every player’s goals, assists, appearances, cards, highlights, and awards build into their profile. Advanced competitions can also track passes, possession, shots, and shot accuracy from match-day events.',
 			},
 		],
 	},
@@ -83,13 +83,13 @@ export const faqGroups: FaqGroup[] = [
 				id: 10,
 				question: 'How much work is setup?',
 				answer:
-					'Minutes. Create the competition, add teams, share invite links. Players onboard themselves; you never type a roster into a system.',
+					'Minutes. Create the competition, add teams, assign team admins if needed, and share invite links or codes. Players onboard themselves; you never type a whole roster into a system.',
 			},
 			{
 				id: 11,
 				question: 'How does live scoring work?',
 				answer:
-					'From one phone at the pitch: big +/− score buttons, the live minute, and logging scorers and assists as they happen. The table updates itself after every result.',
+					'From one phone at the pitch: big score buttons, the live minute, scorers, assists, cards, substitutions, and optional advanced stats. The table and player records update after every result.',
 			},
 			{
 				id: 12,
@@ -100,7 +100,14 @@ export const faqGroups: FaqGroup[] = [
 			{
 				id: 13,
 				question: 'Who owns our competition’s data?',
-				answer: 'Your competition does. We’re digitizing your history, not taking it.',
+				answer:
+					'Your competition does. We’re digitizing your history, not taking it. Results and stats remain part of the competition record even if an individual later deletes their account.',
+			},
+			{
+				id: 16,
+				question: 'Can fans get notifications for a competition?',
+				answer:
+					'Yes. Fans can choose the competitions they want notifications for, so updates stay useful instead of noisy.',
 			},
 		],
 	},
