@@ -1,6 +1,6 @@
 ---
 title: Player profiles and stats
-description: Understand how player profiles are created and how goals, assists, cards, saves, and penalties affect stats.
+description: Understand how player profiles are created and how goals, assists, cards, highlights, awards, and advanced stats affect profiles.
 ---
 
 This page helps organizers and players understand player profiles and career totals.
@@ -8,6 +8,7 @@ This page helps organizers and players understand player profiles and career tot
 ## Before you start
 
 - Players join through invite links or codes from an organizer.
+- Invite links and join codes expire after 7 days.
 - Player profile creation currently happens during invite acceptance.
 - Stats come from match events recorded by organizers or team admins.
 
@@ -30,16 +31,17 @@ This page helps organizers and players understand player profiles and career tot
 
 ## Rules & good to know
 
-- Player profiles include name, country, avatar URL field, bio field in schema, and roster/stat history.
-- The mobile profile page currently renders initials rather than the remote avatar.
+- Player profiles include name, photo, bio, positions, preferred foot, height, location, nationality, social handle, highlights, awards, and roster/stat history.
 - Backend aggregates memberships, stats, and team games by league and season.
 - Career totals are computed from stat rows.
-- Career totals count goals, assists, and card stats from recorded events.
+- Career totals count goals, assists, appearances, cards, and other supported stat rows from recorded events.
+- Man of the match awards are stored per game and appear on player profiles when awarded.
 - Own goals are stored as a separate `own_goal` stat type. Do not treat them as normal player goals unless the app displays them that way.
 - Player profile games are derived from player stats and team memberships.
-- Seeded stat types include goals, own goal, assists, yellow card, red card, saves, shots on target, fouls conceded, substitution on, and substitution off.
-- The mobile match center exposes goals, assists, own goals, yellow/red cards, saves, and substitutions.
-- Shots on target and fouls conceded exist as stat types, but no direct mobile control was found in the current match center.
+- Seeded stat types include goals, own goal, assists, yellow card, red card, saves, passes, shots, substitution on, and substitution off.
+- The mobile match center exposes goals, assists, own goals, yellow/red cards, saves, substitutions, man of the match awards, and optional advanced tracking.
+- Pass completion, possession, shot accuracy, and team totals are derived from recorded event rows.
+- YouTube highlight links are added by pasting a YouTube URL. The app stores and displays the parsed video details.
 
 ## Penalties
 
@@ -54,4 +56,3 @@ This page helps organizers and players understand player profiles and career tot
 - [Fixtures and live match day](/docs/fixtures-match-day/)
 - [Lineups](/docs/lineups/)
 - [Limits and roadmap](/docs/limits-roadmap/)
-

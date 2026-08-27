@@ -25,32 +25,32 @@ const steps = [
 	},
 	{
 		title: 'Run match day live',
-		text: 'Score, minute, goals and assists, from one phone.',
+		text: 'Score, minute, cards, substitutions, awards, and optional advanced stats from one phone.',
 	},
 	{
 		title: 'The table keeps itself',
-		text: 'Standings and player stats update automatically after every result.',
+		text: 'Standings, team stats, and player profiles update after every result.',
 	},
 ];
 
 const showcase = [
 	{
 		image: matchCenter,
-		alt: 'Sportykore live match center with big plus and minus score buttons, the running minute, and goal logging',
+		alt: 'Sportykore live match center with score buttons, running minute, player events, substitutions, and match stats',
 		title: 'Run the match like a broadcast.',
-		text: 'Big +/− score buttons, the live minute, and scorers and assists logged as they happen — all from one phone at the pitch.',
+		text: 'Big score buttons, the live minute, scorers, assists, cards, substitutions, man of the match, and optional advanced stats, all from one phone at the pitch.',
 	},
 	{
 		image: playerProfile,
-		alt: 'Sportykore player profile showing per-season and career totals for goals, assists, fixtures, and cards',
+		alt: 'Sportykore player profile showing season stats, career totals, highlights, awards, and player details',
 		title: 'Every player gets a record that lasts.',
-		text: 'Per-season numbers and career totals — goals, assists, fixtures, cards — a record that follows every player.',
+		text: 'Season numbers, career totals, highlights, and man of the match awards, a record that follows every player.',
 	},
 	{
 		image: manageLeagues,
 		alt: 'Sportykore competition management screen for creating, scheduling, and managing competitions',
 		title: 'Your competition, in your pocket.',
-		text: 'Create the competition, set the season, add teams, and manage every fixture from your phone.',
+		text: 'Create the competition, set seasons, add teams, assign team admins, schedule fixtures, and manage match day from your phone.',
 	},
 	{
 		image: joinLeague,
@@ -65,7 +65,7 @@ const roles = [
 		title: 'Players',
 		icon: 'player',
 		points: [
-			'A permanent profile — goals, assists, fixtures, and career totals.',
+			'A permanent profile with goals, assists, fixtures, highlights, awards, and career totals.',
 			'Join any competition with one invite code.',
 			'Sign in with a one-time code — no passwords, ever.',
 		],
@@ -77,8 +77,8 @@ const roles = [
 		icon: 'coach',
 		points: [
 			'Formation-aware lineups with proper positions.',
-			'Substitutions that keep the pitch view accurate.',
-			'Player development recorded automatically from live matches.',
+			'Lineups that unlock substitutions and man of the match selection.',
+			'Player development tracked from live matches and optional advanced stats.',
 		],
 		linkLabel: 'More for coaches',
 		href: '/players',
@@ -88,8 +88,8 @@ const roles = [
 		icon: 'organizer',
 		points: [
 			'Create a competition and add teams in minutes.',
-			'Run match day live from one phone.',
-			'Standings that update themselves after every result.',
+			'Assign team admins to handle lineups for their own teams.',
+			'Run match day live with standings that update after every result.',
 		],
 		linkLabel: 'More for organizers',
 		href: '/organizers',
@@ -105,7 +105,7 @@ const softwareApplicationSchema = {
 	applicationCategory: 'SportsApplication',
 	operatingSystem: 'iOS, Android',
 	description:
-		'Sportykore — live match scoring, automatic standings, and permanent player profiles for grassroots football competitions in Nigeria. Join the waitlist for early access.',
+		'Sportykore brings live scoring, automatic standings, team-admin lineups, match stats, and permanent player profiles to grassroots football competitions in Nigeria. Join the waitlist for early access.',
 	offers: {
 		'@type': 'Offer',
 		price: '0',
@@ -120,8 +120,8 @@ const softwareApplicationSchema = {
 ---
 
 <Layout
-	title="Grassroots Football League Software | Sportykore"
-	description="Live scores, automatic standings, and permanent player profiles for grassroots football leagues — starting in Nigeria. Join the waitlist."
+	title="Grassroots Football Competition Software | Sportykore"
+	description="Live scores, automatic standings, team-admin lineups, match stats, and permanent player profiles for grassroots football competitions in Nigeria. Join the waitlist."
 	pathname="/"
 	structuredData={[softwareApplicationSchema]}
 >
@@ -171,7 +171,7 @@ const softwareApplicationSchema = {
 			<div class="mx-auto max-w-6xl">
 				<div class="max-w-2xl" data-reveal>
 					<p class="eyebrow text-purple">How it works</p>
-					<h2 class="display-2 mt-3 text-ink">From grassroots competition to broadcast in four steps.</h2>
+					<h2 class="display-2 mt-3 text-ink">From grassroots competition to match-day broadcast in four steps.</h2>
 				</div>
 
 				<ol class="mt-12 grid list-none grid-cols-1 gap-6 p-0 sm:grid-cols-2 lg:grid-cols-4">

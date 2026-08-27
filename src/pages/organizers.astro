@@ -18,15 +18,19 @@ const organizerFaq = faqGroups
 const benefits = [
 	{
 		title: 'Setup takes minutes',
-		text: 'Create the competition, set the season, add teams. Share invite links and players onboard themselves — you never type a roster into a system.',
+		text: 'Create the competition, set the season, add teams, and assign team admins where needed. Share invite links and players onboard themselves.',
 	},
 	{
 		title: 'Live match day from one phone',
-		text: 'Big +/− score buttons, the running minute, scorers and assists logged as they happen — right from the touchline.',
+		text: 'Score buttons, the running minute, scorers, assists, cards, substitutions, awards, and optional advanced tracking from the touchline.',
 	},
 	{
 		title: 'The table keeps itself',
-		text: 'Standings and player stats update automatically after every result. No spreadsheets, no late-night maths.',
+		text: 'Standings, table zones, player stats, and match records update after every result. No spreadsheets, no late-night maths.',
+	},
+	{
+		title: 'Team admins share the load',
+		text: 'Assign a trusted admin to each team so they can set lineups and keep their own match-day squad ready.',
 	},
 	{
 		title: 'Stream to your fans',
@@ -58,8 +62,8 @@ const breadcrumbSchema = {
 ---
 
 <Layout
-	title="Run Your Grassroots League Online | Sportykore"
-	description="Create a grassroots league in minutes, run live match days from one phone, and let standings keep themselves. Free for early competitions — join the Sportykore waitlist."
+	title="Run Your Grassroots Competition Online | Sportykore"
+	description="Create a grassroots competition in minutes, assign team admins, run live match days from one phone, and let standings keep themselves. Join the Sportykore waitlist."
 	pathname="/organizers"
 	structuredData={[breadcrumbSchema]}
 >
@@ -78,7 +82,7 @@ const breadcrumbSchema = {
 						style="--enter-delay: 300ms"
 					>
 						Run live match days from one phone, and let standings, stats, and player records keep
-						themselves — for every team in your competition.
+						themselves for every team in your competition.
 					</p>
 					<div class="hero-enter flex flex-col gap-3 sm:flex-row" style="--enter-delay: 450ms">
 						<a href="#waitlist" class="btn-cta text-base">Join the waitlist</a>
@@ -88,7 +92,7 @@ const breadcrumbSchema = {
 					<div class="w-[62%] max-w-64 sm:max-w-68">
 						<PhoneFrame
 							src={manageLeagues}
-							alt="Sportykore competition management screen for creating, scheduling, and managing a competition"
+							alt="Sportykore competition management screen for seasons, teams, venues, schedules, standings, and admin tools"
 							loading="eager"
 							sizes="(min-width: 1024px) 272px, 62vw"
 						/>
@@ -127,7 +131,7 @@ const breadcrumbSchema = {
 					<div data-parallax class="w-[70%] max-w-70 sm:max-w-72">
 						<PhoneFrame
 							src={matchCenter}
-							alt="Sportykore live match center with score controls, live minute, and goal logging"
+							alt="Sportykore live match center with score controls, live minute, player events, substitutions, and stats"
 						/>
 					</div>
 				</div>
@@ -136,8 +140,8 @@ const breadcrumbSchema = {
 					<h2 class="display-2 mt-3 text-white">One phone runs the whole show.</h2>
 					<p class="mt-4 max-w-md leading-relaxed text-white/70">
 						Start the match, keep the minute running, tap the score as it changes, and log
-						scorers and assists in the moment. When the whistle goes, the table has already
-						updated itself.
+						the events that matter. Lineups power substitutions and man of the match, while
+						advanced tracking can add possession, passes, and shots when you have someone to record them.
 					</p>
 				</div>
 			</div>

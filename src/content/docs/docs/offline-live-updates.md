@@ -8,7 +8,7 @@ This page explains what Sportykore can still show on patchy data and what needs 
 ## Before you start
 
 - Browse important pages while online if you may need them later.
-- Do not plan to score a whole match offline.
+- Do not plan to run a whole match offline. Advanced tracking can buffer locally, but core match controls still need the API.
 
 ## Use cached browsing
 
@@ -30,8 +30,9 @@ This page explains what Sportykore can still show on patchy data and what needs 
 - Cached data is kept for up to 24 hours.
 - Default stale time is 5 minutes.
 - Reads may use cached data when offline.
-- This is not full offline write/sync.
-- Creating leagues, scoring games, recording stats, and editing rosters call the API directly and require connectivity.
+- This is not full offline write/sync for every action.
+- Creating competitions, core scoring, roster edits, and most management actions call the API directly and require connectivity.
+- Advanced tracking events can be queued locally and synced later with client-generated IDs to avoid double counting.
 - Backend game updates are broadcast through server-sent events.
 - Match Center applies local patches for score/status and invalidates public live queries.
 
@@ -40,4 +41,3 @@ This page explains what Sportykore can still show on patchy data and what needs 
 - [Fixtures and live match day](/docs/fixtures-match-day/)
 - [Public discovery](/docs/public-discovery/)
 - [Limits and roadmap](/docs/limits-roadmap/)
-
