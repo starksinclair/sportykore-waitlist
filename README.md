@@ -88,6 +88,6 @@ Configured for [Vercel](https://vercel.com) via `@astrojs/vercel`. Push to the c
 
 Production site: **https://www.sportykore.com**
 
-## Contact Form
+## Contacts Form
 
 Submissions include name, email, phone normalized to E.164, role, and message. Successful submissions redirect to `/thanks`. The older public form endpoint remains as a server-side alias for compatibility, but the site should only link to `/api/contact`.
