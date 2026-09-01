@@ -1,4 +1,4 @@
-# Cursor AI briefing — Sportykore waitlist (premium direction)
+# Cursor AI briefing - Sportykore website (premium direction)
 
 Use this file **with** [`design.md`](./design.md). The brand guide is the source of truth for tokens; **this** file is what you copy into Cursor so the output stays restrained, editorial, and on-brand.
 
@@ -13,7 +13,7 @@ Use this file **with** [`design.md`](./design.md). The brand guide is the source
 
 Optional one-liner prompt pattern:
 
-> Build a single-page waitlist for Sportykore using @design.md and my filled @development.md. Follow the “Do not” list. Mobile-first, accessible contrast, one primary CTA.
+> Build and maintain the public Sportykore website using @design.md and this brief. Follow the "Do not" list. Mobile-first, accessible contrast, one primary CTA.
 
 ---
 
@@ -48,7 +48,7 @@ Optional one-liner prompt pattern:
 **Subhead (1–2 sentences, specific):**  
 `[Your subhead — avoid “revolutionary platform”]`
 
-**Primary CTA label:** `[e.g. Join the waitlist]`  
+**Primary CTA label:** `Get it on Google Play`  
 **Secondary CTA (optional):** `[e.g. Watch a 30s clip — link TBD]`
 
 **Micro-trust line (optional, only if honest):**  
@@ -62,7 +62,7 @@ Keep them **concrete** (what the user gets), not feature soup.
 
 1. `Connect with local competitions, track live matches, and dive into broadcast-level stats.`
 2. `See clear stats built for organizers and fans.`
-3. `Join the waitlist to be the first to know when the app launches.`
+3. `Sportykore is available now on Google Play for Android. iOS is coming soon.`
 
 ---
 
@@ -86,7 +86,7 @@ Keep them **concrete** (what the user gets), not feature soup.
 
 **Analytics:** `Vercel Analytics`
 
-**Domain:** `waitlist.sportykore.com`
+**Domain:** `www.sportykore.com`
 
 **DB:** `Google Sheets`
 
@@ -117,11 +117,11 @@ displayBold: "PlayfairDisplay_700Bold",
 ## 8. Reference sites (premium bar)
 
 1. `https://www.superhuman.com/` — Borrow the sparse premium hero, tight copy hierarchy, and controlled reveal of signup/onboarding steps. [web:11]
-2. `https://www.robinhood.com/` — Borrow the ultra-simple waitlist capture flow and referral-style momentum that makes joining feel competitive and shareable. [web:21][web:27]
+2. `https://www.robinhood.com/` - Borrow the ultra-simple conversion flow and strong download momentum. [web:21][web:27]
 3. `https://www.hey.com/` — Borrow the opinionated editorial copy style, strong typographic rhythm, and confident page pacing. [web:23]
 4. `https://www.stripe.com/` — Borrow the crisp section hierarchy, clean product storytelling, and subtle motion that helps dense content still feel premium. [web:8]
 5. `https://www.notion.com/` — Borrow the calm whitespace, product-first layout, and restrained interface framing that keeps the page modern and credible. [web:8][web:12]
-6. `https://www.clubhouse.com/` — Borrow the invite-only framing and community-access feel so the waitlist feels like entry into a live network. [web:25]
+6. `https://www.clubhouse.com/` - Borrow the community-access feel so contacting Sportykore feels like joining a live network. [web:25]
 7. `https://www.linear.app/` — Borrow the precision in typography, restrained motion, and serious product polish that makes a simple page feel high-end. [web:9]
 8. `https://www.vercel.com/` — Borrow the premium dark-surface composition, clean technical layout, and subtle scroll motion for a sharper modern feel. [web:9]
 

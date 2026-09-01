@@ -1,6 +1,6 @@
-# Sportykore — Waitlist site brand & UI reference
+# Sportykore - Website brand & UI reference
 
-Brief for marketing and waitlisting pages. Derived from the mobile app design system (`tailwind.config.js`, `src/components/ui/Button.tsx`, `src/theme/fonts.ts`, intro screens, pattern components).
+Brief for marketing and contact pages. Derived from the mobile app design system (`tailwind.config.js`, `src/components/ui/Button.tsx`, `src/theme/fonts.ts`, intro screens, pattern components).
 
 ---
 
@@ -18,7 +18,7 @@ Local football meets a broadcast-style feed — connect with competitions, follo
 - Supporting line:
   Connect with local competitions, track live matches, and dive into broadcast-level stats.
 
-**Short slogan ideas for waitlist hero** (pick one lane):
+**Short slogan ideas for website hero** (pick one lane):
 
 | Style     | Copy                                              |
 | --------- | ------------------------------------------------- |
@@ -80,7 +80,7 @@ Tune copy for geography and dialect (e.g. Africa-first, Nigerian English) as you
 
 ## Typography
 
-App loads via `@expo-google-fonts`. Mirror on the waitlist site with the same families.
+App loads via `@expo-google-fonts`. Mirror on the website with the same families.
 
 | Role         | Font                 | Weights         | Usage                                        |
 | ------------ | -------------------- | --------------- | -------------------------------------------- |
@@ -163,7 +163,7 @@ repeating-linear-gradient(
 
 ## Repo / product alignment note
 
-Expo config (`app.json`) may still use legacy **slug**, **scheme**, or **bundle id** from the previous product name. Update those when you ship Sportykore; this document is the **brand layer** for web waitlists and marketing.
+Expo config (`app.json`) may still use legacy **slug**, **scheme**, or **bundle id** from the previous product name. Update those when you ship Sportykore; this document is the **brand layer** for web marketing and contact pages.
 
 ---
 

@@ -11,18 +11,19 @@ export const roleOptions = [
 	'other',
 ] as const;
 
-export type WaitlistRole = (typeof roleOptions)[number];
+export type ContactRole = (typeof roleOptions)[number];
 
-export interface WaitlistSubmission {
+export interface ContactSubmission {
 	name: string;
 	email: string;
 	phone: string;
-	role: WaitlistRole;
+	role: ContactRole;
+	message: string;
 }
 
-export interface WaitlistValidationResult {
-	data?: WaitlistSubmission;
-	fieldErrors: Partial<Record<keyof WaitlistSubmission, string>>;
+export interface ContactValidationResult {
+	data?: ContactSubmission;
+	fieldErrors: Partial<Record<keyof ContactSubmission, string>>;
 }
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -36,7 +37,7 @@ function readString(value: unknown) {
 	return typeof value === 'string' ? value.trim() : '';
 }
 
-export function validateWaitlistSubmission(payload: unknown): WaitlistValidationResult {
+export function validateContactSubmission(payload: unknown): ContactValidationResult {
 	if (!isRecord(payload)) {
 		return {
 			fieldErrors: {
@@ -44,6 +45,7 @@ export function validateWaitlistSubmission(payload: unknown): WaitlistValidation
 				email: 'Enter your email address.',
 				phone: 'Enter your phone number.',
 				role: 'Choose how you take part in local football.',
+				message: 'Tell us what you need help with.',
 			},
 		};
 	}
@@ -51,8 +53,9 @@ export function validateWaitlistSubmission(payload: unknown): WaitlistValidation
 	const name = readString(payload.name);
 	const email = readString(payload.email).toLowerCase();
 	const phone = normalizePhoneToE164(readString(payload.phone));
-	const role = readString(payload.role) as WaitlistRole;
-	const fieldErrors: WaitlistValidationResult['fieldErrors'] = {};
+	const role = readString(payload.role) as ContactRole;
+	const message = readString(payload.message);
+	const fieldErrors: ContactValidationResult['fieldErrors'] = {};
 
 	if (!name) {
 		fieldErrors.name = 'Enter your full name.';
@@ -65,15 +68,21 @@ export function validateWaitlistSubmission(payload: unknown): WaitlistValidation
 	}
 
 	if (!phone) {
-		fieldErrors.phone = 'Enter a valid phone number — e.g. 0801 234 5678 or +234 801 234 5678.';
+		fieldErrors.phone = 'Enter a valid phone number, e.g. 0803 123 4567.';
 	} else if (!phonePattern.test(phone)) {
-		fieldErrors.phone = 'Enter a valid phone number — e.g. 0801 234 5678 or +234 801 234 5678.';
+		fieldErrors.phone = 'Enter a valid phone number, e.g. 0803 123 4567.';
 	}
 
 	if (!role) {
 		fieldErrors.role = 'Choose how you take part in local football.';
 	} else if (!roleOptions.includes(role)) {
 		fieldErrors.role = 'Choose a valid role.';
+	}
+
+	if (!message) {
+		fieldErrors.message = 'Tell us what you need help with.';
+	} else if (message.length > 1200) {
+		fieldErrors.message = 'Keep your message under 1,200 characters.';
 	}
 
 	if (Object.keys(fieldErrors).length > 0) {
@@ -86,6 +95,7 @@ export function validateWaitlistSubmission(payload: unknown): WaitlistValidation
 			email,
 			phone,
 			role,
+			message,
 		},
 		fieldErrors,
 	};

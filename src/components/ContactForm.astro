@@ -1,21 +1,21 @@
 ---
-import { roleOptions } from '../lib/waitlist';
+import { roleOptions } from '../lib/contact';
 
 const label = 'mb-2 block text-sm font-semibold text-white';
 
 const field =
 	'w-full rounded-[13px] border border-white/15 bg-white/6 px-4 py-3.5 text-base text-white placeholder:text-white/40 focus:border-gold-score focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-gold-score/45';
 
-const selectClasses = `${field} waitlist-select-dark appearance-none bg-[length:1.125rem] bg-[right_1rem_center] bg-no-repeat pr-11`;
+const selectClasses = `${field} contact-select-dark appearance-none bg-[length:1.125rem] bg-[right_1rem_center] bg-no-repeat pr-11`;
 
 const err = 'mt-2 hidden text-sm font-semibold text-[#ffb3c0]';
 ---
 
 <form
 	class="space-y-5 text-left"
-	data-waitlist-form
+	data-contact-form
 	novalidate
-	aria-describedby="waitlist-form-status"
+	aria-describedby="contact-form-status"
 >
 	<div class="grid gap-4 sm:grid-cols-2">
 		<div class="sm:col-span-2">
@@ -64,13 +64,14 @@ const err = 'mt-2 hidden text-sm font-semibold text-[#ffb3c0]';
 				autocorrect="off"
 				spellcheck="false"
 				aria-describedby="phone-error"
+				required
 			/>
 			<p class={err} id="phone-error"></p>
 		</div>
 
 		<div>
-			<label class={label} for="role">I’m joining as</label>
-			<select class={selectClasses} id="role" name="role" aria-describedby="role-error">
+			<label class={label} for="role">I’m contacting as</label>
+			<select class={selectClasses} id="role" name="role" aria-describedby="role-error" required>
 				<option value="" class="text-ink">Choose your role</option>
 				{
 					roleOptions.map((role) => (
@@ -82,23 +83,37 @@ const err = 'mt-2 hidden text-sm font-semibold text-[#ffb3c0]';
 			</select>
 			<p class={err} id="role-error"></p>
 		</div>
+
+		<div class="sm:col-span-2">
+			<label class={label} for="message">How can we help?</label>
+			<textarea
+				class={`${field} min-h-32 resize-y leading-relaxed`}
+				id="message"
+				name="message"
+				placeholder="Tell us about your competition, school, club, or what you need help with."
+				maxlength="1200"
+				aria-describedby="message-error"
+				required
+			></textarea>
+			<p class={err} id="message-error"></p>
+		</div>
 	</div>
 
 	<div class="space-y-3">
 		<button class="btn-cta h-14 w-full text-base" type="submit" data-submit-button>
-			<span data-submit-label>Join the waitlist</span>
+			<span data-submit-label>Send message</span>
 		</button>
 		<p class="text-sm text-white/60">
-			Free for competitions right now. We'll only email you about early access.
+			Sportykore is available on the App Store and Google Play.
 		</p>
 		<div
 			class="hidden rounded-[13px] border border-[#ffb3c0]/40 bg-live/15 px-4 py-3 text-sm font-semibold text-[#ffd4dc]"
-			id="waitlist-form-summary"
+			id="contact-form-summary"
 			role="alert"
 			tabindex="-1"
 		>
 		</div>
-		<p class="sr-only" id="waitlist-form-status" aria-live="polite"></p>
+		<p class="sr-only" id="contact-form-status" aria-live="polite"></p>
 	</div>
 </form>
 
@@ -107,14 +122,14 @@ const err = 'mt-2 hidden text-sm font-semibold text-[#ffb3c0]';
 
 	const E164 = /^\+[1-9]\d{7,14}$/;
 
-	const form = document.querySelector('[data-waitlist-form]');
+	const form = document.querySelector('[data-contact-form]');
 
 	if (form instanceof HTMLFormElement) {
-		const statusRegion = form.querySelector('#waitlist-form-status');
-		const summary = form.querySelector('#waitlist-form-summary');
+		const statusRegion = form.querySelector('#contact-form-status');
+		const summary = form.querySelector('#contact-form-summary');
 		const submitButton = form.querySelector('[data-submit-button]');
 		const submitLabel = form.querySelector('[data-submit-label]');
-		const fieldNames = ['name', 'email', 'phone', 'role'];
+		const fieldNames = ['name', 'email', 'phone', 'role', 'message'];
 
 		const validators = {
 			name(value: string) {
@@ -148,6 +163,12 @@ const err = 'mt-2 hidden text-sm font-semibold text-[#ffb3c0]';
 			role(value: string) {
 				return value ? '' : 'Choose how you take part in local football.';
 			},
+			message(value: string) {
+				const trimmed = value.trim();
+				if (!trimmed) return 'Tell us what you need help with.';
+				if (trimmed.length > 1200) return 'Keep your message under 1,200 characters.';
+				return '';
+			},
 		};
 
 		const getField = (name: string) => form.elements.namedItem(name);
@@ -160,11 +181,11 @@ const err = 'mt-2 hidden text-sm font-semibold text-[#ffb3c0]';
 			}
 
 			if (submitLabel) {
-				submitLabel.textContent = busy ? 'Joining…' : 'Join the waitlist';
+				submitLabel.textContent = busy ? 'Sending...' : 'Send message';
 			}
 
 			if (statusRegion) {
-				statusRegion.textContent = busy ? 'Submitting your details.' : '';
+				statusRegion.textContent = busy ? 'Sending your message.' : '';
 			}
 		};
 
@@ -221,6 +242,7 @@ const err = 'mt-2 hidden text-sm font-semibold text-[#ffb3c0]';
 				email: String(formData.get('email') ?? ''),
 				phone: String(formData.get('phone') ?? ''),
 				role: String(formData.get('role') ?? ''),
+				message: String(formData.get('message') ?? ''),
 			};
 		};
 
@@ -293,7 +315,7 @@ const err = 'mt-2 hidden text-sm font-semibold text-[#ffb3c0]';
 			setFormBusy(true);
 
 			try {
-				const response = await fetch('/api/waitlist', {
+				const response = await fetch('/api/contact', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
@@ -326,7 +348,7 @@ const err = 'mt-2 hidden text-sm font-semibold text-[#ffb3c0]';
 
 				window.location.assign(result.redirectTo || '/thanks');
 			} catch {
-				showSummary('We could not join you to the waitlist right now. Please try again shortly.');
+				showSummary('We could not send your message right now. Please try again shortly.');
 			} finally {
 				setFormBusy(false);
 			}

@@ -1,5 +1,5 @@
 import { google } from 'googleapis';
-import type { WaitlistSubmission } from './waitlist';
+import type { ContactSubmission } from './contact';
 import { envServer, requireEnvServer } from './server-env';
 
 interface ServiceAccountCredentials {
@@ -57,7 +57,7 @@ function getServiceAccountCredentials(): ServiceAccountCredentials {
 	return { client_email, private_key };
 }
 
-export async function appendWaitlistRow(submission: WaitlistSubmission, source: string) {
+export async function appendContactRow(submission: ContactSubmission, source: string) {
 	const { client_email, private_key } = getServiceAccountCredentials();
 	const spreadsheetId = requireEnvServer('GOOGLE_SHEETS_SPREADSHEET_ID');
 	const sheetName = requireEnvServer('GOOGLE_SHEETS_SHEET_NAME');
@@ -72,7 +72,7 @@ export async function appendWaitlistRow(submission: WaitlistSubmission, source: 
 
 	await sheets.spreadsheets.values.append({
 		spreadsheetId,
-		range: `'${sheetName.replace(/'/g, "''")}'!A:F`,
+		range: `'${sheetName.replace(/'/g, "''")}'!A:G`,
 		valueInputOption: 'USER_ENTERED',
 		insertDataOption: 'INSERT_ROWS',
 		requestBody: {
@@ -83,6 +83,7 @@ export async function appendWaitlistRow(submission: WaitlistSubmission, source: 
 					submission.email,
 					submission.phone,
 					submission.role,
+					submission.message,
 					source,
 				],
 			],

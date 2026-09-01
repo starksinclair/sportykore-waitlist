@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import PhoneFrame from '../components/PhoneFrame.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
-import WaitlistSection from '../components/WaitlistSection.astro';
+import ContactSection from '../components/ContactSection.astro';
 import { faqGroups } from '../lib/faq';
 import { absoluteUrl } from '../lib/site';
 
@@ -63,7 +63,7 @@ const breadcrumbSchema = {
 
 <Layout
 	title="Run Your Grassroots Competition Online | Sportykore"
-	description="Create a grassroots competition in minutes, assign team admins, run live match days from one phone, and let standings keep themselves. Join the Sportykore waitlist."
+	description="Download Sportykore on the App Store or Google Play. Create a grassroots competition, assign team admins, run live match days, and let standings keep themselves."
 	pathname="/organizers"
 	structuredData={[breadcrumbSchema]}
 >
@@ -85,7 +85,10 @@ const breadcrumbSchema = {
 						themselves for every team in your competition.
 					</p>
 					<div class="hero-enter flex flex-col gap-3 sm:flex-row" style="--enter-delay: 450ms">
-						<a href="#waitlist" class="btn-cta text-base">Join the waitlist</a>
+						<a href="/download" class="btn-cta text-base">
+							Get the app
+						</a>
+						<a href="#contact" class="btn-ghost-dark text-base">Contact Sportykore</a>
 					</div>
 				</div>
 				<div class="hero-enter flex justify-center lg:justify-end" style="--enter-delay: 450ms">
@@ -162,6 +165,6 @@ const breadcrumbSchema = {
 			</div>
 		</section>
 
-		<WaitlistSection />
+		<ContactSection />
 	</main>
 </Layout>

@@ -13,6 +13,7 @@ interface Props {
 	robots?: string;
 	ogImageWidth?: number;
 	ogImageHeight?: number;
+	ogImageAlt?: string;
 	/** Page-specific JSON-LD blocks (SoftwareApplication, FAQPage, BreadcrumbList…) */
 	structuredData?: Record<string, unknown>[];
 	/** Hide the sticky nav (e.g. /thanks keeps focus on the message) */
@@ -20,10 +21,11 @@ interface Props {
 }
 
 const {
-	title = 'Sportykore | Live Scores & Stats for Grassroots Football Leagues',
-	description = 'Live scores, automatic standings, and permanent player profiles for grassroots football leagues — starting in Nigeria. Join the waitlist.',
+	title = 'Sportykore | Live Scores & Stats for Grassroots Football Competitions',
+	description = 'Download Sportykore on the App Store or Google Play. Live scores, automatic standings, and permanent player profiles for grassroots football competitions.',
 	pathname = '/',
 	ogImage = '/og/og-default.png',
+	ogImageAlt = 'Sportykore — Looking after the little man. Where local competitions gather.',
 	robots = 'index, follow',
 	ogImageWidth = 1200,
 	ogImageHeight = 630,
@@ -61,7 +63,7 @@ const baseStructuredData = [
 		'@type': 'WebSite',
 		'@id': `${siteUrl.toString()}#website`,
 		name: 'Sportykore',
-		alternateName: 'Sportykore Waitlist',
+		alternateName: 'Sportykore',
 		url: siteUrl.toString(),
 		description: organizationDescription,
 		publisher: {
@@ -113,7 +115,7 @@ const baseStructuredData = [
 		<meta property="og:image" content={ogImageUrl} />
 		<meta property="og:image:width" content={String(ogImageWidth)} />
 		<meta property="og:image:height" content={String(ogImageHeight)} />
-		<meta property="og:image:alt" content="Sportykore — Looking after the little man. Where local competitions gather." />
+		<meta property="og:image:alt" content={ogImageAlt} />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />

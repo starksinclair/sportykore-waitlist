@@ -4,7 +4,7 @@ import LiveMatchCard from '../components/LiveMatchCard.astro';
 import Ticker from '../components/Ticker.astro';
 import PhoneFrame from '../components/PhoneFrame.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
-import WaitlistSection from '../components/WaitlistSection.astro';
+import ContactSection from '../components/ContactSection.astro';
 import { homepageFaqEntries } from '../lib/faq';
 
 import matchCenter from '../assets/screens/match-center.png';
@@ -105,7 +105,7 @@ const softwareApplicationSchema = {
 	applicationCategory: 'SportsApplication',
 	operatingSystem: 'iOS, Android',
 	description:
-		'Sportykore brings live scoring, automatic standings, team-admin lineups, match stats, and permanent player profiles to grassroots football competitions in Nigeria. Join the waitlist for early access.',
+		'Sportykore brings live scoring, automatic standings, team-admin lineups, match stats, and permanent player profiles to grassroots football competitions in Nigeria.',
 	offers: {
 		'@type': 'Offer',
 		price: '0',
@@ -121,7 +121,7 @@ const softwareApplicationSchema = {
 
 <Layout
 	title="Grassroots Football Competition Software | Sportykore"
-	description="Live scores, automatic standings, team-admin lineups, match stats, and permanent player profiles for grassroots football competitions in Nigeria. Join the waitlist."
+	description="Download Sportykore on the App Store or Google Play. Live scores, automatic standings, match stats, and player profiles for grassroots football."
 	pathname="/"
 	structuredData={[softwareApplicationSchema]}
 >
@@ -142,8 +142,8 @@ const softwareApplicationSchema = {
 						class="hero-enter max-w-lg text-[1.0625rem] leading-relaxed text-white/75"
 						style="--enter-delay: 300ms"
 					>
-						Live scores, standings that keep themselves, and player profiles that last. No more
-						“wetin be the score?” in the group chat.
+						Download Sportykore on the App Store or Google Play. Live scores, standings
+						that keep themselves, and player profiles that last.
 					</p>
 				</div>
 
@@ -157,7 +157,9 @@ const softwareApplicationSchema = {
 					class="hero-enter flex flex-col gap-3 sm:flex-row sm:items-center lg:col-start-1"
 					style="--enter-delay: 300ms"
 				>
-					<a href="#waitlist" class="btn-cta text-base">Join the waitlist</a>
+					<a href="/download" class="btn-cta text-base">
+						Get the app
+					</a>
 					<a href="#how-it-works" class="btn-ghost-dark text-base">See how it works</a>
 				</div>
 			</div>
@@ -335,7 +337,6 @@ const softwareApplicationSchema = {
 			</div>
 		</section>
 
-		<!-- §5.7 Waitlist CTA -->
-		<WaitlistSection />
+		<ContactSection />
 	</main>
 </Layout>

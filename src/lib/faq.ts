@@ -1,4 +1,4 @@
-/** FAQ content (WEBSITE_BUILD_BRIEF.md §7) — single source for /faq, the
+/** FAQ content (WEBSITE_BUILD_BRIEF.md §7) - single source for /faq, the
  * homepage preview, and FAQPage JSON-LD. */
 
 export interface FaqEntry {
@@ -116,9 +116,9 @@ export const faqGroups: FaqGroup[] = [
 		entries: [
 			{
 				id: 14,
-				question: 'When does the app launch?',
+				question: 'Where can I download Sportykore?',
 				answer:
-					'Soon — we’re onboarding early competitions now. Join the waitlist and you’ll be first to know when early access opens.',
+					'Sportykore is available on the App Store for iPhone and iPad, and on Google Play for Android.',
 			},
 			{
 				id: 15,

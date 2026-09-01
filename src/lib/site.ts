@@ -4,6 +4,9 @@ export function getSiteOrigin() {
 	return new URL(raw).origin;
 }
 
+export const googlePlayUrl =
+	'https://play.google.com/store/apps/details?id=com.nzenwata.sportykoreapp&pcampaignid=web_share';
+
 /** Absolute page URL for structured data (BreadcrumbList, etc.). */
 export function absoluteUrl(pathname: string) {
 	return new URL(pathname, `${getSiteOrigin()}/`).href;

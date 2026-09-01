@@ -1,0 +1,29 @@
+---
+import ContactForm from './ContactForm.astro';
+---
+
+<section
+	id="contact"
+	class="bg-stripe-dark scroll-mt-20 px-5 py-20 sm:px-8 lg:py-24"
+	aria-labelledby="contact-heading"
+>
+	<div class="mx-auto max-w-xl text-center" data-reveal>
+		<p class="wordmark text-3xl text-gold-score">Sportykore</p>
+		<h2 id="contact-heading" class="display-2 mt-4 text-white">Need help onboarding?</h2>
+		<p class="mx-auto mt-4 max-w-md text-white/70">
+			Download Sportykore on the App Store or Google Play. Send us a message if you want help
+			setting up a competition, school, club, or academy.
+		</p>
+		<div class="mt-8">
+			<a
+				href="/download"
+				class="btn-cta text-base"
+			>
+				Get the app
+			</a>
+		</div>
+		<div class="mt-10">
+			<ContactForm />
+		</div>
+	</div>
+</section>
