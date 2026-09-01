@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PhoneFrame from '../components/PhoneFrame.astro';
-import { googlePlayUrl } from '../lib/site';
 import onboarding from '../assets/screens/onboarding.png';
 
 export const prerender = true;
@@ -9,7 +8,7 @@ export const prerender = true;
 
 <Layout
 	title="Message Sent — Sportykore"
-	description="Your message has been sent to Sportykore. Download the Android app on Google Play or watch for the iOS version soon."
+	description="Your message has been sent to Sportykore. Download the app on the App Store or Google Play."
 	pathname="/thanks"
 	robots="noindex, follow"
 	hideNav
@@ -34,8 +33,8 @@ export const prerender = true;
 							class="hero-enter max-w-md text-[1.0625rem] leading-relaxed text-white/75"
 							style="--enter-delay: 300ms"
 						>
-							We’ll get back to you soon. Android is already available on Google Play,
-							and the iOS version is coming soon.
+							We’ll get back to you soon. Sportykore is available on the App Store and
+							Google Play.
 						</p>
 					</div>
 
@@ -47,7 +46,7 @@ export const prerender = true;
 						<ul class="mt-4 space-y-3 text-sm leading-relaxed text-white/75">
 							<li class="flex gap-2.5">
 								<span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-score" aria-hidden="true"></span>
-								Download Sportykore now if you use Android.
+								Download Sportykore from the App Store or Google Play.
 							</li>
 							<li class="flex gap-2.5">
 								<span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-score" aria-hidden="true"></span>
@@ -79,12 +78,10 @@ export const prerender = true;
 						style="--enter-delay: 450ms"
 					>
 						<a
-							href={googlePlayUrl}
+							href="/download"
 							class="btn-cta text-base"
-							target="_blank"
-							rel="noopener noreferrer"
 						>
-							Get it on Google Play
+							Get the app
 						</a>
 						<a href="/" class="btn-ghost-dark text-base">
 							← Back to the site

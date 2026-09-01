@@ -1,6 +1,4 @@
 ---
-import { googlePlayUrl } from '../lib/site';
-
 const links = [
 	{ href: '/players', label: 'Players' },
 	{ href: '/organizers', label: 'Organizers' },
@@ -33,12 +31,10 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 
 		<div class="flex items-center gap-3">
 			<a
-				href={googlePlayUrl}
+				href="/download"
 				class="btn-cta whitespace-nowrap px-4 py-2.5 text-sm sm:px-6"
-				target="_blank"
-				rel="noopener noreferrer"
 			>
-				Get it on Google Play
+				Get the app
 			</a>
 			<button
 				type="button"

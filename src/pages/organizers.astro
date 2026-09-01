@@ -4,7 +4,7 @@ import PhoneFrame from '../components/PhoneFrame.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
 import ContactSection from '../components/ContactSection.astro';
 import { faqGroups } from '../lib/faq';
-import { absoluteUrl, googlePlayUrl } from '../lib/site';
+import { absoluteUrl } from '../lib/site';
 
 import manageLeagues from '../assets/screens/manage-leagues.png';
 import matchCenter from '../assets/screens/match-center.png';
@@ -63,7 +63,7 @@ const breadcrumbSchema = {
 
 <Layout
 	title="Run Your Grassroots Competition Online | Sportykore"
-	description="Sportykore is available now on Google Play. Create a grassroots competition, assign team admins, run live match days, and let standings keep themselves."
+	description="Download Sportykore on the App Store or Google Play. Create a grassroots competition, assign team admins, run live match days, and let standings keep themselves."
 	pathname="/organizers"
 	structuredData={[breadcrumbSchema]}
 >
@@ -85,8 +85,8 @@ const breadcrumbSchema = {
 						themselves for every team in your competition.
 					</p>
 					<div class="hero-enter flex flex-col gap-3 sm:flex-row" style="--enter-delay: 450ms">
-						<a href={googlePlayUrl} class="btn-cta text-base" target="_blank" rel="noopener noreferrer">
-							Get it on Google Play
+						<a href="/download" class="btn-cta text-base">
+							Get the app
 						</a>
 						<a href="#contact" class="btn-ghost-dark text-base">Contact Sportykore</a>
 					</div>

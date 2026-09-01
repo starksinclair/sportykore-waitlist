@@ -11,7 +11,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "og:image": "node scripts/generate-og.mjs",
-    "favicons": "node scripts/generate-favicons.mjs"
+    "favicons": "node scripts/generate-favicons.mjs",
+    "download:assets": "node scripts/generate-download-assets.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
@@ -27,6 +28,7 @@
     "tailwindcss": "^4.3.0"
   },
   "devDependencies": {
+    "qrcode": "^1.5.4",
     "sharp": "^0.35.3"
   }
 }

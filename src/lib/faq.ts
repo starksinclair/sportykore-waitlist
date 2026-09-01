@@ -118,7 +118,7 @@ export const faqGroups: FaqGroup[] = [
 				id: 14,
 				question: 'Where can I download Sportykore?',
 				answer:
-					'Sportykore is available now on Google Play for Android. The iOS version is coming soon.',
+					'Sportykore is available on the App Store for iPhone and iPad, and on Google Play for Android.',
 			},
 			{
 				id: 15,

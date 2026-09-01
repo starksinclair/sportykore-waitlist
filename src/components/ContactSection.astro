@@ -1,6 +1,5 @@
 ---
 import ContactForm from './ContactForm.astro';
-import { googlePlayUrl } from '../lib/site';
 ---
 
 <section
@@ -12,17 +11,15 @@ import { googlePlayUrl } from '../lib/site';
 		<p class="wordmark text-3xl text-gold-score">Sportykore</p>
 		<h2 id="contact-heading" class="display-2 mt-4 text-white">Need help onboarding?</h2>
 		<p class="mx-auto mt-4 max-w-md text-white/70">
-			Android is available now on Google Play. Send us a message if you want help setting up
-			a competition, school, club, or academy. iOS is coming soon.
+			Download Sportykore on the App Store or Google Play. Send us a message if you want help
+			setting up a competition, school, club, or academy.
 		</p>
 		<div class="mt-8">
 			<a
-				href={googlePlayUrl}
+				href="/download"
 				class="btn-cta text-base"
-				target="_blank"
-				rel="noopener noreferrer"
 			>
-				Get it on Google Play
+				Get the app
 			</a>
 		</div>
 		<div class="mt-10">

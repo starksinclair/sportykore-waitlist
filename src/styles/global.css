@@ -246,6 +246,68 @@
 		background: rgba(248, 248, 250, 0.06);
 	}
 
+	.store-badge {
+		display: inline-flex;
+		min-height: 4rem;
+		min-width: min(100%, 13.75rem);
+		align-items: center;
+		gap: 0.75rem;
+		border-radius: 14px;
+		border: 1px solid rgba(248, 248, 250, 0.18);
+		background: #050505;
+		color: #ffffff;
+		padding: 0.62rem 1rem;
+		box-shadow:
+			0 1px 0 rgba(255, 255, 255, 0.16) inset,
+			0 16px 34px rgba(0, 0, 0, 0.24);
+		transition:
+			transform 0.4s var(--ease-out-quint),
+			border-color 0.2s ease,
+			box-shadow 0.4s var(--ease-out-quint);
+	}
+
+	.store-badge:hover {
+		transform: translateY(-2px);
+		border-color: rgba(248, 248, 250, 0.34);
+		box-shadow:
+			0 1px 0 rgba(255, 255, 255, 0.18) inset,
+			0 18px 40px rgba(0, 0, 0, 0.32);
+	}
+
+	.store-icon {
+		display: inline-flex;
+		height: 2rem;
+		width: 2rem;
+		flex: 0 0 auto;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.store-icon svg {
+		height: 100%;
+		width: 100%;
+	}
+
+	.store-kicker,
+	.store-label {
+		display: block;
+		line-height: 1.05;
+	}
+
+	.store-kicker {
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.01em;
+		opacity: 0.82;
+	}
+
+	.store-label {
+		margin-top: 0.15rem;
+		font-size: 1.25rem;
+		font-weight: 800;
+		letter-spacing: 0;
+	}
+
 	/* Link underline slide micro-interaction. */
 	.link-slide {
 		background-image: linear-gradient(currentColor, currentColor);

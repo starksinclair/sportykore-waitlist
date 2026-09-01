@@ -2,7 +2,7 @@
 
 Marketing website and contact form for [Sportykore](https://www.sportykore.com), the grassroots football competition platform for live scores, automatic standings, team-admin lineups, match stats, and permanent player profiles.
 
-Android is available now on Google Play. The iOS version is coming soon. Contact submissions are stored in Google Sheets.
+Sportykore is available on the App Store and Google Play. Contact submissions are stored in Google Sheets.
 
 ## Stack
 
@@ -18,6 +18,7 @@ Android is available now on Google Play. The iOS version is coming soon. Contact
 | Route | Description |
 | :--- | :--- |
 | `/` | Main marketing page |
+| `/download` | Smart app-download page with mobile store redirect |
 | `/players` | Player and coach page |
 | `/organizers` | Organizer page |
 | `/faq` | Frequently asked questions |
